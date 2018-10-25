@@ -1,0 +1,53 @@
+.detailform{
+  margin-top: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom:100px;
+}
+
+.title{
+  background-color: #f9f9f9;
+  color: grey;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+button{ 
+  background-color: #f05f25;
+  color: #fff;
+}
+
+.mat-card-title {
+  font-size: 18px !important;
+}
+
+.card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 15px !important;
+  border-radius: 2px;
+}
+
+.form_label{
+  color: #A8AAAC;
+  padding: 0 9px 9px 2px;
+  font-size: 16px;
+}
+
+.backbutton{
+  position: absolute;
+  right: 42px;
+  top: 7px;
+}
+
+.blur{
+  opacity: .5;
+}

@@ -1,0 +1,101 @@
+.detailform{
+    display: flex;
+}
+
+div.conBox{
+    margin-bottom:120px;
+}
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+button{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.backbutton {
+    float: right;
+    bottom: 32px;
+    margin-right: 2%;
+}
+
+
+.mat-card-title {
+    font-size: 18px !important;
+    margin-bottom: 35px;
+}
+
+mat-card{
+    word-wrap: break-word;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.conBox{
+    padding: 20px 60px;
+    margin:auto;
+}
+
+.conHeading{
+    margin:auto;
+}
+
+.invalidFormField{
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-size: 15px;
+    padding: 10px;
+    text-align: center;
+ 
+}
+
+.rules{
+    padding: 23px 54px;
+}
+
+.exam_title{
+    font-size: 21px;
+    position: absolute;
+    color: brown;
+}
+
+.blur{
+    opacity: .5;
+}
+
+.mat-card-content{
+    width:100%;
+}
+
+
+@media (max-width:100px){
+    .ruleBox{
+        width:50%;
+        float:none;
+    }
+}
+
+@media (max-width:767px){
+    .ruleBox{
+        width:100%;
+        float:none;
+    }
+}

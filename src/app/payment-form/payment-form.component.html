@@ -1,0 +1,58 @@
+<!-- <button class=closeButton [mat-dialog-close]="true" >X</button> -->
+
+<button class=closeButton [mat-dialog-close]="true"><img class="closeImage" src ="assets/images/close.png" ></button> 
+<p class="pay_heading">Payment Method</p>
+<form name="Payment" (ngSubmit)="onSave()" ngNativeValidate>
+
+  <div >
+
+
+    <input class=paymentInput  maxlength=16 (blur)=numberCheck() (keyup)=cardNumber() name="card_number" placeholder="Card Number" [(ngModel)]="payment.CardNumber" required/>
+
+    <input class=paymentInput maxlength=7 (blur)=DateCheck() (keyup)=expiration_date() name="expiration_date" placeholder="Expiration Date(yyyy-mm)" [(ngModel)]="payment.ExpirationDate" required/>
+
+
+    <input class=paymentInput  maxlength=3 (blur)=numberCheck() name="cvv" placeholder="CVV" (keyup)=cvvValidationn() [(ngModel)]="payment.cvv" required/>
+
+    <br><br>
+  </div>
+
+  <div style="margin-top: 82px;">
+
+  <input class=paymentInput type=text name="first_name" placeholder="First Name" [(ngModel)]="payment.FirstName" required/>
+
+
+  <input class=paymentInput type=text name="last_name" placeholder="Last Name" [(ngModel)]="payment.LastName" required />
+
+  <input class=paymentInput type=text name="City" placeholder="City" [(ngModel)]="payment.City" required/>
+
+
+  <input class=paymentInput type=text name="State" placeholder="State" [(ngModel)]="payment.State" required/>
+
+
+  <input class=paymentInput type=text name="Country" placeholder="Country" [(ngModel)]="payment.Country" required/>
+
+
+  <input class=paymentInput type=number name="zip" placeholder="Postal Code" [(ngModel)]="payment.Zip" required/>
+
+  <button class=Pay_button>Proceed to pay ${{data.amount}}</button>
+  
+  </div>
+</form>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+  </div>
+  
+  <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+      </filter>
+    </defs>
+  </svg>
+  <!-- loader ends-->

@@ -1,0 +1,80 @@
+.detailform{
+  margin-top: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom:100px;
+}
+
+.title{
+  background-color: #f9f9f9;
+  color: grey;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+  
+button{
+  float: right;
+  background-color: #f05f25;
+  color: #fff;
+}
+
+.mat-card-title {
+  font-size: 18px !important;
+}
+
+.card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  border-radius: 2px;
+}
+
+.title{
+  background-color: #f9f9f9;
+  color: grey;
+}
+
+.example-container {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: block;
+}
+
+.bgclr{
+  background-color: #f1f1f1;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 2px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}    
+
+.mat-cell{
+  overflow:initial;
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content{
+  background-color: #f9f9f9 !important;
+  width:100%!important;
+}
+
+.Norecord{
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.blur{
+  opacity: .5;
+}

@@ -1,0 +1,58 @@
+.detailform{
+    margin-top: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom:100px;
+}
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+button{ 
+  background-color: #f05f25;
+  color: #fff;
+  float: right;
+}
+
+.backbutton{
+  position: absolute;
+  right: 42px;
+  top: 16px;
+}
+
+.mat-card-title {
+  font-size: 18px !important;
+}
+
+.card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 15px !important;
+  border-radius: 2px;
+}
+
+.subDeatils{
+  margin-bottom: 14px;
+  margin-top: -15px;
+  color: blue;
+}
+
+.blur{
+  opacity: .5;
+}
+
+.container{
+  top:120%;
+}

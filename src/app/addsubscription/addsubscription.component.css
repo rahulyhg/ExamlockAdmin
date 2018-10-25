@@ -1,0 +1,53 @@
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100% !important;
+}
+
+button{
+    float: right;
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.backbutton{
+    top: -8px;
+}
+
+.mat-card-title {
+    font-size: 18px !important;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.optionsSelecting{
+    list-style-type: none;
+    cursor: pointer;
+    color: blue;
+    color:#A8AAAC;
+    background-color: #f6f6f9; 
+    text-transform: uppercase;
+}
+
+.listbox{
+    border: 1px solid #DADCDE;
+
+}
+
+.blur{
+    opacity: .5;
+}

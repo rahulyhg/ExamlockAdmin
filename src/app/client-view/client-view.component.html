@@ -1,0 +1,105 @@
+<div *ngIf="onlyClient">
+    <mat-card class="title card" [ngClass]="CrdBlur()">
+      <mat-card-title>
+        <strong>{{ onlyClient.username | uppercase }} Details</strong>
+      </mat-card-title>
+      <button  routerLink="/edit_client/{{onlyClient.id}}" mat-raised-button class="backbutton">EDIT CLIENT</button>
+      <button (click)="goBack()" mat-raised-button class="backbutton">BACK</button>      
+    </mat-card>
+    <mat-card class="detailform" [ngClass]="CrdBlur()">
+      <mat-card-content> 
+        <div class="example-container"  >
+            <div class="information">
+                <mat-card-title>
+                    <strong class="example_head"> Client Details</strong>
+                </mat-card-title> 
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large >person</mat-icon> 
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Client Name </span>
+                    <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.username}} </span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>email</mat-icon> 
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Email</span> 
+                    <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.email}}</span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>work_outline</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Compny Name </span>
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.comp_name}} </span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>assignment</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Prefix </span> 
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.prefix}}</span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>perm_phone_msg</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Phone Number </span> 
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.phone_number}}</span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>home</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Address </span> 
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{onlyClient.address}}</span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>devices_other</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Total limit </span> 
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{sum_total_limit}}</span><span *ngIf=msg>none</span>
+                </p>
+
+                <p mat-list-item class="user-line">
+                    <mat-icon large>dock</mat-icon>
+                    <span class="example_title">&nbsp;&nbsp;&nbsp; Available limit </span> 
+                    <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{sum_available_limit}}</span><span *ngIf="msg">none</span> 
+                </p>
+            </div>
+
+            <div class="attributes">
+                <mat-card-title>
+                    <strong class="example_head"> Assigned Exams</strong>
+                </mat-card-title>
+
+                <div class="exam_list user-line" mat-list-item *ngFor="let exams of SelectedCleint">
+                    <div class="divstyle">
+                        <a class="tooltip "  routerLink="/exam_view/{{exams.exam_id}}" ><img src ="assets/images/view.png" ></a> 
+                        <span class="viewTooptip">View</span>
+                    </div>
+                    <span class="exam_name">&nbsp;&nbsp;&nbsp;{{exams.exam_name}} </span>
+                </div>                          
+
+                <p class="noExamPara user-line" *ngIf="SelectedCleint.length == 0">
+                <span class="noExamSpan" >No Exam Assigned yet</span>
+                <button class=examButton mat-raised-button (click)="AddExamRedirect(onlyClient.id)" >ASSIGN EXAM</button>
+                </p>
+
+            </div>
+        </div>  
+      </mat-card-content>
+    </mat-card>    
+</div>
+  
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

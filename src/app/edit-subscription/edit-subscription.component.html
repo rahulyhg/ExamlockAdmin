@@ -1,0 +1,57 @@
+<div *ngIf="subscription">
+  <mat-card class="title card" [ngClass]="CrdBlur()">
+    <mat-card-title>
+      <strong>Edit Subscription - {{ subscription.sub_name | uppercase }}</strong>
+    </mat-card-title>
+    <button (click)="goBack()" mat-raised-button class="backbutton">ALL SUBSCRIPTION</button>   
+  </mat-card>
+  <mat-card class="detailform" [ngClass]="CrdBlur()">
+    <mat-error *ngIf="formError">
+      {{ formMessage}}
+    </mat-error>
+    <mat-error *ngIf="formSuccess">
+      {{ formMessage}}
+    </mat-error>
+    <br/>
+    <mat-card-content> 
+      <div class="example-container"  >
+
+        <label class="form_label" >Plan Name</label>
+        <input class="form_input" type="text" name="sub_name" placeholder="Name" [(ngModel)]="subscription.sub_name" readonly>
+        
+        <label class="form_label" >Description</label>
+        <input class="form_input"  type="text" name="Description" placeholder="Description" [(ngModel)]="subscription.sub_desc" >
+
+        <label class="form_label" >Cost</label>
+        <input class="form_input" type="number" name="Cost" placeholder="Cost" [(ngModel)]="subscription.sub_cost" >
+
+        <label class="form_label" >Devices</label>
+        <input class="form_input" type="number" name="Devices"  placeholder="Number of Devices" [(ngModel)]="subscription.devices" readonly >
+
+        <label class="form_label" >Validity</label>
+        <input class="form_input"  name="validity"  placeholder="Validity" [(ngModel)]="subscription.validity" readonly>
+  
+        <div class="">
+          <button mat-raised-button (click)="onSave()">Save</button>
+        </div>
+      </div> 
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+  </defs>
+</svg>
+<!-- loader ends-->

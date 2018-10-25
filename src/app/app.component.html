@@ -1,0 +1,44 @@
+<mat-toolbar style="background-color: #22354B; color:#fff; height:58px; " *ngIf="isLoggedIn$ | async">
+    <mat-icon class="Menu_button_app sidemenuIcon" (click)="sidenav.toggle()" md-button >menu</mat-icon>
+    <img class="prov_logo_" src="assets/images/examlock_final_logo.png" alt="img">
+    <span class="toolbar-spacer" ><b >Examlock</b></span>
+   
+    <div class="admin_name" >
+        <span ><mat-icon class="admin_icon sidemenuIcon">person</mat-icon>&nbsp;<b class="adminAdmin">{{uname}}</b></span>
+    </div>
+    <span class="example-fill-remaining-space"></span>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" >
+    <mat-sidenav #sidenav class="example-sidenav-content" mode="side" *ngIf="isLoggedIn$ | async">
+        <mat-nav-list>
+            <a mat-list-item [class.redColor]="inClient" routerLinkActive="menu-active"  [routerLink]="['client']"  *ngIf="user=='admin'">
+                <mat-icon small class="list_item_icon sidemenuIcon">group</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Clients</span>
+            </a>
+            <a mat-list-item [class.redColor]="inExam" routerLinkActive="menu-active"  [routerLink]="['exam']" >
+                <mat-icon small class="list_item_icon sidemenuIcon">content_paste</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Exam</span>
+            </a>
+            <a mat-list-item [class.redColor]="inRule" routerLinkActive="menu-active"  [routerLink]="['accesscode']" >
+                <mat-icon small class="list_item_icon sidemenuIcon">turned_in</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Rule</span>
+            </a>
+            <a mat-list-item [class.redColor]="inSubscription" routerLinkActive="menu-active" [routerLink]="['subscription']" >
+                <mat-icon small class="list_item_icon sidemenuIcon">subscriptions</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Subscription</span>
+            </a>
+            <a mat-list-item [class.redColor]="inInvoice" routerLinkActive="menu-active" [routerLink]="['invoice']">
+                <mat-icon small class="list_item_icon sidemenuIcon">library_books</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Invoices</span>
+            </a>
+            <a mat-list-item [class.redColor]="inActivity" routerLinkActive="menu-active" [routerLink]="['access_log']">
+                <mat-icon small class="list_item_icon sidemenuIcon">view_agenda</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Activity</span>
+            </a>
+            <a mat-list-item routerLinkActive="menu-active" [routerLink]="['logout']"   (click)="sidenav.toggle()">
+                <mat-icon small class="list_item_icon sidemenuIcon">exit_to_app</mat-icon>&nbsp;&nbsp;&nbsp;<span class="list_item_font">Logout</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+<ng4-loading-spinner> </ng4-loading-spinner>
+
+
+

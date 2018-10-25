@@ -1,0 +1,93 @@
+.detailform{
+    margin-bottom:100px;
+}
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+button{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.saveButton{
+    margin:30px 60px;
+}
+
+.backbutton{
+    position: absolute;
+    right: 42px;
+    top: 8px;
+}
+
+.mat-card-title {
+    font-size: 18px !important;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.conBox{
+    padding: 20px 60px;
+    margin:auto;
+}
+
+.conHeading{
+    margin:auto;
+}
+
+.invalidFormField{
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-size: 15px;
+    padding: 10px;
+    text-align: center;  
+}
+
+
+.toggleBox {
+    width: 25%;
+    float: left;
+    margin: 13px auto;
+    
+}
+
+#SelectAllControl, #SelectAllApp{
+    float: none;
+    clear: both;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.toggleText{
+    text-transform: capitalize;
+}
+
+.toggleText {
+    text-transform: uppercase;
+}
+
+.blur{
+  opacity: .5;
+}
+
+#bookDropdown{
+  height: 105px;
+  width: 40%;
+}

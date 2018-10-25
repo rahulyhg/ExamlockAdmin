@@ -1,0 +1,113 @@
+
+
+<mat-card class="bgclr" [ngClass]="CrdBlur()" >
+  <div class="example-container">
+      <div class="example-header">
+
+        <div class="newform">
+          <form class="new-inner-element full-width btn-form">
+            <input type="text" (keyup)="applyFilter($event.target.value)" class="input_invoice" [(ngModel)]=SearchInput name="searchres" placeholder="Search Activity" >
+            <button  class="inv_button" type="button"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="span_h">
+        ACTIVITY <div *ngIf="searchRes" style="display: inline;"> - search results</div>
+      </div>
+  </div>
+</mat-card>
+
+    <div>
+   
+      <mat-card class="detailform" [ngClass]="CrdBlur()">
+  
+      <mat-table #table [dataSource]="dataSource" >
+  
+        <!-- ID Column -->
+         <ng-container matColumnDef="position">
+          <mat-header-cell style="max-width: 9%!important;" *matHeaderCellDef> </mat-header-cell>
+          <mat-cell style="max-width: 9%!important;" *matCellDef="let element"> {{element.index}} </mat-cell>
+        </ng-container>
+        
+        <!-- Exam Name Column -->
+        <ng-container matColumnDef="exam_name">
+          <mat-header-cell *matHeaderCellDef> Exam Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.exam_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Exam Name Column -->
+        <ng-container matColumnDef="client_name">
+          <mat-header-cell *matHeaderCellDef> Client Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.client_name}} </mat-cell>
+        </ng-container>
+    
+        <!-- date Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+      
+        <!-- access_token Column -->
+        <ng-container matColumnDef="access_token">
+          <mat-header-cell *matHeaderCellDef> Access Token </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.access_token}} </mat-cell>
+        </ng-container>
+  
+          <!-- machine_type Column -->
+          <ng-container matColumnDef="machine_type">
+              <mat-header-cell *matHeaderCellDef> Machine Type </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.machine_type}} </mat-cell>
+            </ng-container>
+  
+        <!-- machine_name Column -->
+        <ng-container matColumnDef="machine_name">
+            <mat-header-cell *matHeaderCellDef> Machine Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.machine_name}} </mat-cell>
+        </ng-container>
+  
+        <!-- timezone Column -->
+         <ng-container matColumnDef="timezone">
+            <mat-header-cell *matHeaderCellDef> Timezone </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.timezone}} </mat-cell>
+        </ng-container>
+                          
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell style="overflow: visible !important;" *matCellDef="let element">
+                <div class="divstyle">
+                    <a class="tooltip "  routerLink="/activity/{{element.id}}" ><img src ="assets/images/view.png" ></a> 
+                    <span class="viewTooptip">View</span>
+                </div>
+            </mat-cell> 
+          </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+     
+      <p mat-item-list class="loading_date" *ngIf="loaderShow">Loading data...</p>
+      <p mat-item-list class="Norecord" *ngIf=" (totalVal != 1  && !loaderShow) || (API_status =='failed' &&  !loaderShow)">No Records found</p>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf=" API_status=='success' && !loaderShow"></mat-paginator>
+    </mat-card>
+    
+  </div>
+  
+  
+   <!-- loader start-->
+    <div class="container" *ngIf="loaderShow" >
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+    
+    <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+        </filter>
+      </defs>
+    </svg>
+   <!-- loader ends-->
+ 

@@ -1,0 +1,33 @@
+<mat-toolbar style="background-color: #22354B; color:#fff;">
+    <mat-icon class="sidemenuIcon" md-button (click)="chandni.toggle()">menu</mat-icon>
+    <span class="toolbar-spacer"><b>Prov Lockbygyu</b></span>
+    <span class="name"><mat-icon>person</mat-icon>&nbsp;&nbsp;<b>CHANNDI</b></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">  
+    <mat-sidenav #chandni class="example-sidenav-content" mode="side">
+        <mat-nav-list>
+            <a mat-list-item class="active" href="/#/home">
+                <mat-icon small>dashboard</mat-icon>&nbsp;&nbsp;&nbsp;Dashboard
+            </a>
+            <a mat-list-item href="/#/client" *ngIf="user=='admin'">     
+                <mat-icon small>group</mat-icon>&nbsp;&nbsp;&nbsp;Clientscerfrf
+            </a>
+            <a mat-list-item href="/#/exam">
+                <mat-icon small>content_paste</mat-icon>&nbsp;&nbsp;&nbsp;Exam
+            </a>
+            <a mat-list-item href="/#/accesscode">
+                <mat-icon small>turned_in</mat-icon>&nbsp;&nbsp;&nbsp;Rules
+            </a>
+            <a mat-list-item href="/#/subscription">
+                <mat-icon small>view_agenda</mat-icon>&nbsp;&nbsp;&nbsp;Subscription
+            </a>
+            <a mat-list-item href="/#/invoice">
+                <mat-icon small>library_books</mat-icon>&nbsp;&nbsp;&nbsp;Invoices
+            </a>
+            <a mat-list-item href="/#/">
+                <mat-icon small>exit_to_app</mat-icon>&nbsp;&nbsp;&nbsp;Logout
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+</mat-sidenav-container>

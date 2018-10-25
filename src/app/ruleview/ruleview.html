@@ -1,0 +1,74 @@
+<div *ngIf="rule"> 
+    <mat-card class="title card">
+        <mat-card-title>
+            <strong>{{rule_name | uppercase}} Details</strong>
+        </mat-card-title>
+        <button (click)="goBack()" mat-raised-button class="backbutton">BACK</button> 
+        <button (click)="importRule()" mat-raised-button class="backbutton">IMPORT</button>  
+           
+    </mat-card>
+    <mat-card class="detailform">
+        <mat-card-content> 
+            
+            <div class="row2 rules" >
+                <mat-card-title>
+                    <strong class="example_head"> Allowed Rules </strong>
+                </mat-card-title>
+                
+                <!-- for Bookmarks -->
+                <div class="ruleBox">
+                    <p mat-list-item   class="user-line">
+                        <mat-icon large>bookmark</mat-icon> 
+                        <span class="example_title">&nbsp;&nbsp;&nbsp; Bookmarks </span>
+                    </p>        
+                    <ul mat-list-item>
+                    <li class="example_list" *ngFor="let bookmark of books">{{bookmark.value}}</li>
+                    
+                    </ul>
+                    <div class="example_list" *ngIf=!books >No Bookmark</div>
+                </div>
+
+                <!-- for Applications -->
+                <div class="ruleBox" >
+                    <p mat-list-item class="user-line" >
+                        <mat-icon large>mobile_screen_share</mat-icon> 
+                        <span class="example_title">&nbsp;&nbsp;&nbsp; Applications </span>
+                    </p>        
+                    <ul mat-list-item>
+                    <li class="example_list" *ngFor="let application of app">{{application.value}}</li>
+                    
+                    </ul>
+                    <div class="example_list" *ngIf=!app >No Application</div>
+                </div>
+
+                <!-- for Ports -->
+                <div class="ruleBox">
+                    <p mat-list-item  class="user-line">
+                        <mat-icon large>bug_report</mat-icon> 
+                        <span class="example_title">&nbsp;&nbsp;&nbsp; Ports </span>
+                    </p>        
+                    <ul mat-list-item>
+                        <li class="example_list CapitalValue" *ngFor="let portt of portt">{{portt.value}}</li>
+                        
+                    </ul>
+                    <div class="example_list" *ngIf=!portt >No Port</div>
+                </div>
+
+                <!-- for Controls -->
+                <div class="ruleBox">
+                    <p mat-list-item class="user-line">
+                        <mat-icon large>copyright</mat-icon> 
+                        <span class="example_title">&nbsp;&nbsp;&nbsp; Controls </span>
+                    </p>        
+                    <ul mat-list-item>
+                        <li class="example_list CapitalValue" *ngFor="let ctrl of ctrl">{{ctrl.value}}</li>
+                        
+                    </ul>
+                    <div class="example_list" *ngIf=!ctrl >No Control</div>
+                </div>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div> 
+       

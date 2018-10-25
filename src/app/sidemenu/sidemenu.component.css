@@ -1,0 +1,40 @@
+.example-container {
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.mat-drawer.mat-drawer-side {
+    background-color: #22354B;
+    color: #fff;
+}
+
+.mat-list-item:hover{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.mat-list-item{
+    color: #fff !important;
+}
+
+.mat-toolbar.mat-primary {
+    background-color: #22354B;
+    color: rgba(255,255,255,.87);
+}
+
+.name{
+    margin: 1000px;
+}
+
+.toolbar-spacer {
+    margin-left:40px;
+}
+
+.mat-list, .mat-nav-list, .mat-selection-list {
+    padding-top: 0px !important;
+}
+
+.sidemenuIcon {
+    font-size: 18px!important;
+}

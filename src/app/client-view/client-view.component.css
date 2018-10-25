@@ -1,0 +1,83 @@
+.detailform{
+    margin: 40px auto 100px auto;
+}
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+   display: inline-block;
+   width: 100%;
+  }
+
+  
+button{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.backbutton{
+    float: right;
+    bottom: 32px;
+    margin-right: 2%;
+}
+
+.mat-card-title {
+    font-size: 18px !important;
+    margin-bottom: 35px;
+    display: flex !important;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.attributes{
+    float: right;
+}
+
+mat-card{
+    word-wrap: break-word;
+}
+
+.exam_list{
+    height:25px;
+}
+
+.examButton{
+    position: relative;
+    top:55px;
+}
+
+.viewTooptip {
+    bottom:100%;
+} 
+
+.divstyle{
+    display: initial;
+}  
+
+.exam_name{
+    position: absolute;
+    top:2px;
+}
+
+.noExamSpan{
+    position: absolute; 
+    top:5px;
+}
+
+.noExamPara{
+    position: relative;   
+    font-size: 17px;
+}
+
+.blur{
+    opacity: .5;
+}

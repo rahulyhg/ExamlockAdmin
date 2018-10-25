@@ -1,0 +1,100 @@
+.paymentLabel{
+    width:100%;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: roboto,arial;
+    color: red;
+    line-height: 20px;
+}
+
+.paymentInput{
+    width: 39%;
+    padding: 12px 12px;
+    /* box-sizing: border-box; */
+    margin: 8px 33px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    display: block;
+    float: left;
+    
+}
+
+.pay_heading{
+    font-size: 18px;
+    font-family: roboto;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    color: #4C5B6E;
+}
+
+.paymentInput::placeholder{
+    opacity:.5;
+    text-transform: uppercase;
+}
+
+.paymentInput:focus{
+    border-bottom: 2px solid #f05f25;
+}
+
+.Pay_button{
+    background-color: #22354B;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: relative;
+    width: 89%;
+    margin-left: 5%;
+    top: 33px;
+    margin-right: 5%;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.closeButton{
+    float: right;
+    outline:none;
+    border:none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.closeImage{
+    height: 30px;
+}
+
+mat-dialog-container.mat-dialog-container{
+    overflow: hidden !important;
+
+}
+
+@media(max-width:810px){
+    .paymentInput{
+        width: 33%; 
+    }
+
+    .Pay_button{
+        width: 89%;  
+    }
+
+}
+
+
+@media(max-width:560px){
+    .paymentInput{
+        width: 80%; 
+    }
+
+    .Pay_button{
+        width: 88%;  
+    }
+
+}

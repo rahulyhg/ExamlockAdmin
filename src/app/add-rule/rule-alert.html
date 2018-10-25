@@ -1,0 +1,10 @@
+<div  class="alertContainer" >
+  <h2 class="alertHeading" mat-dialog-title></h2>
+  <mat-dialog-content>
+    <p class=alertBody *ngIf="data.name == 'name'">Please enter the Rule Name!</p>
+    <p class=alertBody *ngIf="data.name == 'option'">Please select the Options!</p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="alertButton" >
+    <button class="alertButtonAction" mat-button [mat-dialog-close]="true" value="true" cdkFocusInitial>OK</button>
+  </mat-dialog-actions>
+</div>

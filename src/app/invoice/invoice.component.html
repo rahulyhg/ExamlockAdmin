@@ -1,0 +1,112 @@
+
+
+<mat-card class="bgclr"  [ngClass]="CrdBlur()">
+  <div class="example-container" >
+      <div class="example-header">
+          <div class="newform">
+            <form class="new-inner-element full-width btn-form">
+              <input type="text" (keyup)="applyFilter($event.target.value)" [(ngModel)]=SearchInput class="input_invoice" name="searhres" placeholder="Search invoice by clients" >
+              <button  class="inv_button" type="button"><i class="fa fa-search"></i></button>
+            </form>
+            <button mat-raised-button class="mybutton new-inner-element" (click)="newinvoice()">ADD INVOICE</button>
+          </div>
+      </div>
+      <div>
+        <span class="span_h">
+          INVOICE <div *ngIf="searchRes" style="display: inline;"> - search results</div>
+        </span>
+      </div>
+  </div>
+</mat-card>
+<div>
+  <mat-card class="detailform"  [ngClass]="CrdBlur()">
+    <mat-card-content>  
+      <mat-table #table [dataSource]="dataSource">
+        
+        <!-- inv_id Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell style="max-width: 9%!important;" *matHeaderCellDef> </mat-header-cell>
+          <mat-cell style="max-width: 9%!important;" *matCellDef="let element"> {{element.index}} </mat-cell>
+        </ng-container>
+        
+        <!-- inv_no Column -->
+        <ng-container matColumnDef="inv_no">
+          <mat-header-cell *matHeaderCellDef> Invoice No </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.inv_no}} </mat-cell>
+        </ng-container>
+        
+        <!-- Payable Amount  Column -->
+        <ng-container matColumnDef="payable_amount">
+          <mat-header-cell *matHeaderCellDef>Amount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.payable_amount}} </mat-cell>
+        </ng-container>
+    
+        <!-- inv_date Column -->
+        <ng-container matColumnDef="inv_date">
+          <mat-header-cell *matHeaderCellDef> Last Invoice Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.inv_date}} </mat-cell>
+        </ng-container>
+
+        <!-- exam_name Column -->
+        <ng-container matColumnDef="exam">
+          <mat-header-cell *matHeaderCellDef> Exam Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.exam_name}} </mat-cell>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+        </ng-container> 
+    
+        <!-- Action Column -->
+        <ng-container  matColumnDef="action" >
+          <mat-header-cell  style="overflow: visible !important;" *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell colspan=2 *matCellDef="let element"> 
+            <div class="divstyle">
+              <a class="tooltip" [href]=element.pdf target="_blank"><img  src ="assets/images/view.png" ></a> 
+              <span class="viewTooptip">View</span>
+
+              <a class="tooltip" (click)=downloadPdf(element.inv_id) style="cursor: pointer;"><img src ="assets/images/download.png" ></a>    
+              <span class="viewTooptip">Download</span>
+
+            </div> 
+          </mat-cell>
+        </ng-container>
+
+        <!-- Pay Column -->
+        <ng-container matColumnDef="Pay">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div *ngIf = "element.status == 'PENDING'">
+              <button (click)="openDialogue(element.inv_id)" class=PayButton mat-raised-button >PAY NOW</button>
+            </div>
+          </mat-cell>
+        </ng-container> 
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+    <p mat-item-list  class="loading_date" *ngIf="loaderShow">Loading data...</p>      
+    <p mat-item-list class="Norecord" *ngIf=" API_status == 'failed' && loaderShow==false" >No Invoices found</p>     
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="API_status == 'success' && !loaderShow"></mat-paginator>
+  </mat-card>
+</div>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow"  >
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+  </defs>
+</svg>
+<!-- loader ends-->

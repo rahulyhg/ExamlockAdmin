@@ -1,0 +1,114 @@
+
+
+<mat-card class="bgclr" [ngClass]="CrdBlur()">
+    <div class="example-container">
+        <div class="example-header">
+            <div class="newform">
+                <form class="new-inner-element full-width btn-form">
+                    <input type="text" (keyup)="applyFilter()" [(ngModel)]=SearchInput class="input_invoice" name="searchplace" placeholder="Search Exam" >
+                    <button  class="inv_button" type="button"><i class="fa fa-search"></i></button>
+                </form>
+                <button mat-raised-button class="add_rules_button new-inner-element" (click)="newexam()">Add Exam</button>
+            </div>
+        </div>
+        <div class="span_h">
+            EXAM <div *ngIf="searchRes" style="display: inline;"> - search results</div>
+        </div> 
+    </div>
+</mat-card>
+
+ 
+<div style="width:100%;">
+    <div style="float:left; width:100%; margin:10px;">
+        <mat-card class="permit detailform" [ngClass]="CrdBlur()">
+            <mat-card-content>
+                <mat-table #table [dataSource]="dataSource">
+  
+                    <!-- position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell style="max-width: 9%!important;" *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell style="max-width: 9%!important;" *matCellDef="let element"> {{element.index}} </mat-cell>
+                    </ng-container>
+                
+                    <!-- Exam Name Column -->
+                    <ng-container matColumnDef="exam_name">
+                        <mat-header-cell *matHeaderCellDef> Exam Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.exam_name}} </mat-cell>
+                    </ng-container>
+
+                    <!-- if(this.AdminStatus == '"1"'){ -->
+                
+                    <!-- Client Id Column -->
+                    <ng-container matColumnDef="client_id" >
+                        <mat-header-cell *matHeaderCellDef> Client Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.client_name}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Exam Desc Column -->
+                    <ng-container matColumnDef="exam_desc">
+                        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.exam_desc}} </mat-cell>
+                    </ng-container>
+                
+                    <!-- rule_id Column -->
+                    <ng-container matColumnDef="rule_id">
+                        <mat-header-cell *matHeaderCellDef> Rule Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.rule_name}} </mat-cell>
+                    </ng-container>
+                
+                    <!-- access_token Column -->
+                    <ng-container matColumnDef="access_token">
+                        <mat-header-cell *matHeaderCellDef> Access Token </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.access_token}} </mat-cell>
+                    </ng-container>
+                    
+                    <!-- Admin Id Column -->
+                    <ng-container matColumnDef="billing_cycle">
+                        <mat-header-cell *matHeaderCellDef> Billing Cycle </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.billing_cycle}} </mat-cell>
+                    </ng-container>
+                    
+                    <!--Symbol Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell style="overflow: visible !important;" *matCellDef="let element"> 
+                            <div class="divstyle">
+                                <a class="tooltip "  routerLink="/exam_view/{{element.exam_id}}" ><img class="pink"  src ="assets/images/view.png" ></a> 
+                                <span class="viewTooptip">View</span>
+                                
+                                <a class="tooltip " routerLink="/edit_exam/{{element.exam_id}}"  ><img src ="assets/images/edit.png" ></a>    
+                                <span class="viewTooptip">Edit</span>
+                            </div>
+
+                        </mat-cell> 
+                    </ng-container>  
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </mat-card-content>
+          <p mat-item-list  class="loading_date" *ngIf="loaderShow">Loading data...</p>
+      <p mat-item-list class="Norecord" *ngIf=" API_status == 'failed' && !loaderShow" >No Exams found</p>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="API_status == 'success' && !loaderShow"></mat-paginator>
+                      
+        </mat-card>
+    </div>
+</div>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->
+

@@ -1,0 +1,76 @@
+.detailform{
+  margin-top: 30px !important;
+} 
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+} 
+  
+button{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.detailsButton{
+    position: initial;
+    float:none;
+    margin-top: 12px;
+}
+
+.backbutton{
+    float: right;
+    bottom: 32px;
+    margin-right: 2%;
+}
+
+.mat-card-title {
+    font-size: 16px !important;
+    margin-bottom: 35px;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+
+.row1{
+    width:50%; 
+    float:left; 
+    position:relative;
+}
+
+.mat-card-content{
+    width: 100%;
+}
+
+.arrow{
+    position: absolute;
+    left: 240px;
+}
+
+.exam_info{
+    position: absolute;
+    left: 300px;
+    font-size: 19px;
+
+}
+
+.exam_title{
+    position: absolute;
+    color: brown;
+    font-size: 18px;
+}

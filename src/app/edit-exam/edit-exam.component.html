@@ -1,0 +1,87 @@
+<div *ngIf="onlyExam"> 
+    <div *ngFor = "let exam of onlyExam">
+        <mat-card class="title card"  [ngClass]="CrdBlur()">
+            <mat-card-title>
+                <strong>Edit Exam</strong>
+            </mat-card-title>
+            <button (click)="goBack()" mat-raised-button class="backbutton">ALL EXAMS</button>      
+        </mat-card>
+        <mat-card class="detailform"  [ngClass]="CrdBlur()">
+            <mat-error *ngIf="formError">
+            {{ formMessage}}
+            </mat-error>
+            <mat-error *ngIf="formSuccess">
+            {{ formMessage}}
+            </mat-error>
+            <br/> 
+            <mat-card-content> 
+                <form name="addExxam" (ngSubmit)="onSave()" ngNativeValidate>
+                    <div class="example-container"  >
+
+                        <label class="form_label" >Exam Name</label>        
+                        <input class="form_input" type="text" name="exam_name"  placeholder="Exam Name" [(ngModel)]="exam.exam_name"  required readonly>
+                        
+                        <label class="form_label" >Client Name</label>
+                        <select class="form_input" name="client_name" placeholder="Client Name" [(ngModel)]=exam.client_id required>
+                            <option *ngFor="let clients of client" [value]=clients.id >{{clients.username}}</option>
+                        </select>
+
+                        <label class="form_label" >Description</label>
+                        <textarea class="form_input" type="text" name="exam_desc" placeholder="Description" [(ngModel)]="exam.exam_desc" required></textarea>
+
+                        <label class="form_label" >Rule Name</label>
+                        <select class="form_input" name="rule_name" placeholder="Rule Name" [(ngModel)]="exam.rule_id" required>
+                            <option class="form_input" *ngFor="let rule of rules" [value]="rule.rule_id" >{{rule.rule_name}}</option>
+                        </select>
+
+                        <label class="form_label" >Test URL</label>
+                        <input class="form_input" name="test_url" placeholder="Enter Test URL" [(ngModel)]="exam.test_url"  required>
+                        
+
+                        <div  *ngIf=exam.rule_id >
+                            <label class="form_label" >Access Token</label>
+                            <input class="form_input" name="access_token" placeholder="Access Token" [(ngModel)]="exam.access_token" readonly required>
+                        </div>
+                        
+                        <label class="form_label" >Subscription Plan</label>
+                        <input class="form_input" name="sub_name" placeholder="Enter Subscription Name" [(ngModel)]="SubIDRes.sub_name" readonly required>
+                        <div class="subDeatils" *ngIf=SubIDRes.sub_name > ( {{SubIDRes.sub_name}} is valid for {{SubIDRes.devices}} devices and {{SubIDRes.validity}} only )</div>
+            
+                        <label class="form_label" >Bulk Discount (in percent)</label>
+                        <input class="form_input" type=number name="discount" (keyup)=discountedAmount($event.target.value) min="0" placeholder="Bulk Discount (in percent)" [(ngModel)]="exam.bulk_discount" required>
+
+                        <div *ngIf=exam.bulk_discount >            
+                            <label class="form_label" >Payable Amount</label>
+                            <input class="form_input" type=number name="amount" min="0" placeholder="Amount"  [(ngModel)]="payable_amount" readonly>
+                        </div>
+
+                        <!-- <label class="form_label" >Billing Cycle</label>
+                        <select class="form_input" name="billing_cycle" placeholder="Billing Cycle" [(ngModel)]="exam.billing_cycle" required>
+                            <option *ngFor="let cycle of Billing_cycles" [value]=cycle >{{cycle}}</option>
+                        </select> -->
+
+                        <div><button mat-raised-button >Save</button></div>
+                    
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> 
+   
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

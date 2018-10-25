@@ -1,0 +1,53 @@
+.example-container{
+  display: block;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 2px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.PayButton {
+  background-color: #f05f25;
+  color:white;
+}
+
+.mybutton{
+  color: #f05f25;
+  text-transform: uppercase;
+  font-weight: normal;
+  float: right;
+  background-color: #fff; 
+  position: relative;
+}
+
+.mat-form-field-underline {
+  position: absolute;
+  height: 0px!important; 
+  width: 100%;
+}
+
+.mat-cell, .mat-header-cell {
+  flex: 1;
+  font-size: 12px !important;
+  word-wrap: break-word;
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content{
+  background-color: #f9f9f9 !important;
+  width:100%!important;
+}
+
+.Norecord{
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.blur{
+  opacity: .5;
+}

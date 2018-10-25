@@ -1,0 +1,68 @@
+<div *ngIf="subscription">
+  <mat-card class="title card">
+    <mat-card-title>
+      <strong>{{ subscription.sub_name | uppercase }} Details</strong>
+    </mat-card-title>
+    <button (click)="goBack()" class="backbutton" mat-raised-button >BACK</button>     
+  </mat-card>
+
+  <mat-card class="detailform">
+    <mat-card-content> 
+      <div class="example-container"  >
+        <div class="information">
+          
+            <mat-card-title>
+              <strong class="example_head"> Subscription Details</strong>
+            </mat-card-title>   
+
+            <p mat-list-item class="user-line">
+              <mat-icon large >subscriptions</mat-icon> 
+              <span class="example_title">&nbsp;&nbsp;&nbsp; Plan Name </span>
+              <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{subscription.sub_name}} </span>
+            </p>
+
+            <p mat-list-item class="user-line">
+              <mat-icon large>forum</mat-icon> 
+              <span class="example_title">&nbsp;&nbsp;&nbsp; Cost</span>
+              <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{subscription.sub_cost}}</span>
+            </p>
+
+            <p mat-list-item class="user-line">
+              <mat-icon large>description</mat-icon>
+              <span class="example_title">&nbsp;&nbsp;&nbsp; Description</span>
+              <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{subscription.sub_desc}} </span>
+            </p>
+
+            <p mat-list-item class="user-line">
+              <mat-icon large>restore</mat-icon>
+              <span class="example_title">&nbsp;&nbsp;&nbsp; Validity </span>
+              <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{subscription.validity}}</span>
+            </p>
+
+            <p mat-list-item class="user-line">
+            <mat-icon large>stay_current_portrait</mat-icon>
+            <span class="example_title">&nbsp;&nbsp;&nbsp; Devices </span>
+            <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{subscription.devices}}</span>
+          </p>
+        </div>
+      </div>  
+    </mat-card-content>
+  </mat-card>
+</div>
+  
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

@@ -1,0 +1,110 @@
+div.conBox.ng-star-inserted{
+  margin-bottom: 100px;
+}
+
+.example-container {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: block;
+}
+
+.example-header { 
+  min-height: 64px;
+  padding: 8px 2px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mybutton{
+  float: right;
+  background-color: #ffffff;
+  color: #f05f25;
+  border-radius: 45%;
+}
+
+.app_options{
+  margin-right: 13px;
+}
+
+.mat-cell, .mat-header-cell {
+  flex: 1;
+  font-size: 12px !important;
+  word-wrap: break-word;
+}
+
+.bgclr{
+  background-color: #f9f9f9;
+}
+
+.card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 15px !important;
+  border-radius: 2px;
+}
+
+.title{
+  background-color: #f9f9f9;
+  color: grey;
+}
+
+.spacer{
+  margin-left: 20px;
+}
+
+.spacerinput{
+  margin-left: 100px;
+}
+
+.spacerinput1{
+  margin-left: 190px;
+}
+
+.togglespacer{
+  margin-left: 35px;
+}
+
+table {
+  font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif !important;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content{
+  background-color: #f9f9f9 !important;
+  width:100%!important;
+}
+
+.Norecord{
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.blur{
+  opacity: .5;
+}
+
+@media(max-width:480px){
+  .add_rules_button{
+    width:20%;
+    font-size:9px;
+  }
+
+  .button_top{
+    margin-right: -16px;
+  }
+}

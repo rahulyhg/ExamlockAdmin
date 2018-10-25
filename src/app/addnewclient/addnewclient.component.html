@@ -1,0 +1,65 @@
+<mat-card class="title card"  [ngClass]="CrdBlur()">
+  <mat-card-title>
+    <strong>Add New Client</strong>
+    <button routerLink='/client' mat-raised-button class="backbutton">Back</button>  
+  </mat-card-title>
+</mat-card>
+<mat-card class="detailform"  [ngClass]="CrdBlur()">
+  <mat-error *ngIf="formError">
+    {{ formMessage}}
+  </mat-error>
+  <mat-error *ngIf="formSuccess">
+    {{ formMessage}}
+  </mat-error>
+  <br/>
+  <mat-card-content>
+    <form (ngSubmit)="onSave()" ngNativeValidate>
+      <div class="example-container">
+        
+        <label class="form_label" >Username</label>
+        <input class="form_input" name="username" type="text" placeholder="Enter Username" [(ngModel)]="client.username" required>
+        
+        <label class="form_label" >Email</label>
+        <input class="form_input"  name="email" type="email" placeholder="Enter Email" [(ngModel)]="client.email"  required>
+        
+        <label class="form_label" >Password</label>
+        <input class="form_input" name="password" type="password" placeholder="Enter Password" [(ngModel)]="client.password" required>
+      
+        <label class="form_label" >Company Name</label>
+        <input class="form_input" name="comp_name" type="text" placeholder="Enter Company Name" [(ngModel)]="client.comp_name" required>
+        
+        <label class="form_label" >Prefix</label>
+        <textarea class="form_input" (blur)=checkPrefix($event) minlength="3" maxlength="3" name="prefix" type="text" placeholder="Enter Prefix (For access code)" [(ngModel)]="client.prefix" required></textarea>
+    
+        <label class="form_label" >Phone Number</label>
+        <input class="form_input" pattern="^\+?\d{3}[- ]?\d{3}[- ]?\d{4}$" name="Phone Number" type="text" minlength="10" maxlength="10" placeholder="Enter Phone number" [(ngModel)]="client.phone_number" required>
+        <div *ngIf=PhoneNotValid class="PhoneNotValid"> Number must be of 10 digits only </div>
+
+        <label class="form_label" >Address</label>
+        <input class="form_input" name="Address" placeholder="Enter Address" [(ngModel)]="client.address" required>
+        
+        <div class="row">
+          <button mat-raised-button >SAVE</button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+  </defs>
+</svg>
+  <!-- loader ends-->

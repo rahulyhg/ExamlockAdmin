@@ -1,0 +1,44 @@
+.bgclr{
+  background-color: #f9f9f9;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 2px 0;
+}
+
+.mat-form-field { 
+  font-size: 14px;
+  width: 100%;
+}
+
+.mybutton{
+  float: right;
+  background-color: #f05f25;
+  color: #fff;
+}
+
+.mat-cell, .mat-header-cell {
+  flex: 1;
+  font-size: 12px !important;
+  word-wrap: break-word;
+}
+
+button.mat-raised-button{
+  background-color: #f05f25 ;
+  color: white ;
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content{
+  background-color: #f9f9f9 !important;
+  width:100%!important;
+}
+
+.blur{
+  opacity: .5;
+}
+
+.Norecord{
+  font-size: 19px;
+  font-weight: 400;
+}

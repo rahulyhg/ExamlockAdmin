@@ -1,0 +1,134 @@
+.detailform{
+    margin-top: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.title{
+    text-align: center;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+    width: 75%;
+    margin: auto; 
+}
+
+button{
+  float: right;
+   background-color: #f05f25;
+   color: #fff; 
+   margin-top: 25px;
+
+}
+
+.invalidFormField{
+   color: #a94442;
+    background-color: #f2dede;
+    font-size: 15px;
+    padding: 10px;
+    text-align: center;
+    margin: 11px auto 0 !important;
+}
+
+.detailform {
+    max-width: 500px;
+    margin: 45px auto!important;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color:#ccc;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color:#ccc;
+}
+
+.mat-focused .mat-form-field-label{
+    color:#fff;
+}
+
+.mat-focused .mat-form-field-label.mat-accent{
+    color:#ddd;
+}
+
+.mat-focused .mat-form-field-label.mat-warn{
+    color:#ddd;
+}
+
+.mat-focused .mat-form-field-required-marker{
+    color:#ddd;
+}
+
+.mat-focused.mat-primary .mat-select-arrow{
+    color:#fff
+}
+
+.mat-form-field.mat-focused.mat-accent .mat-select-arrow{
+    color:#fff
+}
+
+.mat-form-field.mat-focused.mat-warn .mat-select-arrow{
+    color:#fff
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+    transform:translateY(-1.28125em) scale(.75) perspective(100px) translateZ(.001px);
+    -ms-transform:translateY(-1.28125em) scale(.75);
+    width:133.33333%
+}
+
+.mat-step-icon-not-touched{
+    background-color:rgba(0,0,255,0.3);
+    color:#000
+}
+
+.form_label{
+    color: #A8AAAC;
+    padding: 0 9px 9px 2px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.form_input{
+    background-color: #f6f6f9;
+    padding: 10px;
+    border: 1px solid #DADCDE;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    margin: auto;
+    color:black;
+}
+
+.dashboard_title{
+    text-align: center;
+    font-size: 20px;
+}
+.login_img{
+    width: 68px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo_name{
+    font-size: 31px;
+    font-weight: 600;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo_span {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+#top{
+    margin-top: 5%;
+}

@@ -1,0 +1,25 @@
+.screenshotBox{
+    width: 20%;
+    height: 20%;
+    display: inline-block;
+    margin: 23px;
+    margin-left: 3%;
+    padding: 20px;
+    position: relative;
+}
+
+.expand_image {
+    position: absolute;
+    width: 30px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.noScreenshot{
+    font-size: 64px;
+    margin: 16px;
+    text-align: center;
+    margin-top: 17%;
+    color: #6c6c6c;
+}

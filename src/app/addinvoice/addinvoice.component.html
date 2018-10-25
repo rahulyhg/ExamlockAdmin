@@ -1,0 +1,88 @@
+<mat-card class="title card"  [ngClass]="CrdBlur()">
+    <mat-card-title user-scalable=no>
+        <strong>Add New Invoice</strong>
+      <button class=topButton (click)="goBack()" mat-raised-button class="backbutton">BACK</button>                    
+    </mat-card-title>
+</mat-card>
+<mat-card class="detailform" [ngClass]="CrdBlur()">
+    <mat-error *ngIf="formError">
+        {{ formMessage}}
+    </mat-error>
+    <mat-error *ngIf="formSuccess">
+        {{ formMessage}}
+    </mat-error>
+    <br/>
+    <mat-card-content>
+        <form (ngSubmit)="onSave()" ngNativeValidate>
+            <div class="example-container">
+
+                <div *ngIf = "AdminStatus == '0' ">
+                    <label class="form_label">Client Name</label>
+                    <select class="form_input" style="margin-top: 9px;" (change)=clientDetails(invoice.client_id) name="client_name" placeholder="Client Name" [(ngModel)]="invoice.client_id" required="required">
+                        <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" >Select Client Name</option>
+                        <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%"  *ngFor="let clients of client" [value]=clients.id >{{clients.username}}</option>
+                    </select>
+                </div>
+
+                <label class="form_label">Subscription Plan</label>
+                <select class="form_input" name="Subscription_name" (change)=SubscriptionDetails(invoice.sub_id) placeholder="Subscription Name" [(ngModel)]="invoice.sub_id" required="required">
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" [disabled]="Disabled">Select Subscription Plan </option>
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%"  *ngFor="let sub of subscriptions" [value]=sub.sub_id >{{sub.sub_name}}</option>
+                </select>
+                <div class="subDeatils" *ngIf=invoice.sub_id > 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Devices</th>
+                                    <th>Cost</th>
+                                    <th>Start Date</th>
+                                    <th>Validity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{SubIDRes.devices}}</td>
+                                    <td>{{SubIDRes.sub_cost}}</td>
+                                    <td>{{invoice.dated}}</td>
+                                    <td>{{SubIDRes.validity}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- <div class="subDeatils" *ngIf=invoice.sub_id > ( {{SubIDRes.sub_name}} is valid for {{SubIDRes.devices}} devices and {{SubIDRes.validity}} only )</div> -->
+
+                <!-- <label class="form_label" >Actual Amount</label>
+                <input class="form_input" type=number  name="actual_amount"  placeholder="Actual Amount" [(ngModel)]="invoice.actual_amount" required readonly> -->
+                
+                <div style="width:98%;" *ngIf=invoice.actual_amount >  
+                    <label class="form_label" >Bulk Discount</label>
+                    <input class="form_input"  type=number name="discount" (keyup)=discountedAmount() min="0" max="100" placeholder="Enter Bulk Discount (in percent)" [(ngModel)]="bulk_discount" required>
+                </div>
+
+                <label class="form_label" >Payable Amount</label>
+                <input class="form_input" type=number name="payable_amount" placeholder="Payable Amount" [(ngModel)]="invoice.payable_amount" readonly required>
+
+                <div class="row">
+                    <button mat-raised-button >SAVE</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

@@ -1,0 +1,158 @@
+<mat-card class="title card"  [ngClass]="CrdBlur()">
+    <mat-card-title flex>
+        <strong>Add Exam</strong>    
+        <button (click)="allExams()" mat-raised-button class="backbutton">BACK</button>      
+    </mat-card-title>
+</mat-card>
+<mat-card class="detailform" flex  [ngClass]="CrdBlur()">
+    <mat-error *ngIf="formError">
+        {{ formMessage}}
+    </mat-error>
+    <mat-error *ngIf="formSuccess">
+        {{ formMessage}}
+    </mat-error>
+    <mat-card-content>
+        <form name="addExxam" (ngSubmit)="openDialog()" ngNativeValidate>
+        <div class="example-container">
+
+            <label class="form_label" >Exam Name</label>
+            <input class="form_input" type="text" name="exam_name" placeholder="Enter Exam Name" [(ngModel)]="exam.exam_name"  required>
+            
+            <div *ngIf = "AdminStatus == '0' ">
+                <label class="form_label" >Client Name</label>
+                <select class="form_input"  name="client_name" (change)=generate_token(6) placeholder="Client Name" [(ngModel)]="exam.client_id" required="required">
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " value="" [disabled]="Disabled">Select Client Name</option>
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; "  *ngFor="let clients of client" [value]=clients.id >{{clients.username}}</option>
+                </select>
+            </div>
+            <label class="form_label" >Description</label>
+            <textarea class="form_input" type="text" name="exam_desc" placeholder="Enter Description" [(ngModel)]="exam.exam_desc" required></textarea>
+            
+            <div class ="ifclient" *ngIf=exam.client_id >
+                <label class="form_label" >Rule Name</label>
+                <select class="form_input"  (change)="generate_token(6)" name="rule_name" placeholder="Rule Name" [(ngModel)]="exam.rule_id" required>
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " value="" >Select Rule Name</option>
+                    <option  style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " *ngFor="let rule of rules" [value]="rule.rule_id" >{{rule.rule_name}}</option>
+                </select>
+            </div>
+
+            <label class="form_label" >Test URL</label>
+            <input class="form_input" name="test_url" placeholder="Enter Test URL" [(ngModel)]="exam.test_url"  required>
+            
+            <div style="width:96%;"  *ngIf=exam.rule_id >
+                <label class="form_label" >Access Token</label>
+                <input class="form_input" name="access_token" placeholder="Access Token" [(ngModel)]="exam.access_token" readonly required>
+            </div>
+
+
+            <label class="form_label" >Plan Name</label>
+            <select class="form_input"  (change)=viewSubscription($event) name="subs_plan" placeholder="Subscription Plan" [(ngModel)]="exam.subs_id" required>
+                <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " value="">Select Subscription Plan</option>
+                <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " value="0">Custom Plan</option>
+                <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; "  *ngFor="let subscription of subscriptions; let i = index"  [selected]="i==0" [value]=subscription.sub_id >{{subscription.sub_name}}</option>
+            </select>
+            <div class="subDeatils" *ngIf="exam.subs_id && CUSTOM"> 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Devices</th>
+                            <th>Cost</th>
+                            <th>Start Date</th>
+                            <th>Validity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="filed-input" type=number name="Devices" placeholder="Enter Devices" [(ngModel)]="customValues.cus_devices"  required></td>
+                            <td><input class="filed-input" type=number name="Cost" placeholder="Enter Cost" [(ngModel)]="customValues.cus_cost"  required></td>
+                            <td>{{invoice.dated}}</td>
+                             <td>
+                                <select class="filed-input" placeholder="Select" style="width: 98%;" name="validity" [(ngModel)]="customValues.cus_validity" required> 
+                                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" disabled="disabled"> Select Validity</option>
+                                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" *ngFor="let val of validity;let i = index" [value]="val" selected="i == 1" >{{val}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="subDeatils" *ngIf="exam.subs_id && NON_CUSTOM" > 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Devices</th>
+                            <th>Cost</th>
+                            <th>Start Date</th>
+                            <th>Validity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{SubIDRes.devices}}</td>
+                            <td>{{SubIDRes.sub_cost}}</td>
+                            <td>{{invoice.dated}}</td>
+                            <td>{{SubIDRes.validity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="width:98%;" *ngIf="exam.subs_id && NON_CUSTOM" >  
+                <label class="form_label" >Bulk Discount (in percent)</label>
+                <input class="form_input"  type=number name="discount" (keyup)=discountedAmount($event.target.value) min="0" max="100" placeholder="Enter Bulk Discount (in percent)" [(ngModel)]="exam.bulk_discount" required>
+            </div>
+
+            
+            <div style="width:98%;" *ngIf="exam.subs_id && NON_CUSTOM" >
+                <label class="form_label" >Payable Amount</label>            
+                <input class="form_input" style="margin-top: 10px;" type=number name="amount" min="0"  placeholder="Payable Amount" [(ngModel)]="exam.amount" readonly>
+            </div>
+<!-- 
+            <label class="form_label" >Billing Cycle</label>
+            <select class="form_input"  name="billing_cycle"placeholder="Billing Cycle" [(ngModel)]="exam.billing_cycle" required>
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " value="">Select Billing Cycle</option>                    
+                <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%; left:0px; right:0px; position:absolute; " *ngFor="let cycle of Billing_cycles" [value]=cycle >{{cycle}}</option>
+            </select> -->
+    
+            <div class="row">
+                <button mat-raised-button  >SAVE</button>
+            </div>
+        </div>
+        </form>
+    
+    </mat-card-content>
+</mat-card>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+    <defs>
+        <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+        </filter>
+    </defs>
+</svg>
+<!-- loader ends-->
+
+<!--2nd  loader start-->
+<div class="container" *ngIf="loaderShow2nd" style="margin-top: 30%;" >
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+    </div>
+    
+    <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow2nd">
+        <defs>
+            <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+            </filter>
+        </defs>
+    </svg>
+    <!--2nd loader ends-->

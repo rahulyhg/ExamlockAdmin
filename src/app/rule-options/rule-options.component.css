@@ -1,0 +1,89 @@
+.detailform{
+  margin-top: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom:100px;
+}
+
+.title{
+  background-color: #f9f9f9;
+  color: grey;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+  
+.example-container > * {
+  width: 100%;
+} 
+  
+button{
+  background-color: #f05f25;
+  color: #fff;
+}
+
+.backbutton{
+  position: absolute;
+  right: 42px;
+  top: 7px;
+}
+
+.mat-card-title {
+  font-size: 18px !important;
+}
+
+.card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 15px !important;
+  border-radius: 2px;
+}
+
+.ng2-tag-input-field{
+  margin-bottom: -6px;
+  font-size: medium;
+}
+
+.form_input{
+  background-color: #f6f6f9;
+  /* height: auto; */
+  
+}
+
+textarea{
+  font-family: arial;
+}
+
+input_select_list{
+  background-color: #f6f6f9;
+  
+}
+  
+input::placeholder {
+  color:black;
+}
+
+textarea::placeholder {
+  color:black;
+}
+
+#maxlimit{
+  margin-top: -13px;
+  margin-bottom: 16px;
+  color: blue;
+}
+
+
+.blur{
+  opacity: .5;
+}
+
+.ng2-tag-input-field{
+  background: transparent !important;
+  background-color: #f6f6f9;
+}
+
+  

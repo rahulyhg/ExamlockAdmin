@@ -1,0 +1,47 @@
+.detailform{
+    margin-top: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom:100px;
+}
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+button{
+    background-color: #f05f25;
+    color: #fff;
+}
+
+.mat-card-title {
+    font-size: 18px !important;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.backbutton{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.blur{
+opacity: .5;
+}

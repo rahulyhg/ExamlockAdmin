@@ -1,0 +1,98 @@
+<mat-card class="bgclr fixed" [ngClass]="CrdBlur()">
+    <div class="example-container ">
+        <div class="example-header">
+            <div class="newform">
+                <form class="new-inner-element full-width btn-form">
+                    <input type="text" name="searchres" (keyup)="applyFilter($event.target.value)" class="input_invoice" [(ngModel)]=SearchInput placeholder="Search Client">
+                    <button class="inv_button" type="button"><i class="fa fa-search"></i></button>
+                </form>
+                <button mat-raised-button class="add_rules_button new-inner-element" (click)="newclient()">Add Client</button>
+            </div>
+        </div>
+
+        <div class="span_h">
+            CLIENT
+            <div *ngIf="searchRes" style="display: inline;"> - search results</div>
+        </div>
+    </div>
+</mat-card>
+
+<div class="">
+
+    <mat-card class="detailform" [ngClass]="CrdBlur()">
+        <mat-table #table [dataSource]="dataSource">
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="position">
+                <mat-header-cell style="max-width: 9%!important;" *matHeaderCellDef> </mat-header-cell>
+                <mat-cell style="max-width: 9%!important;" *matCellDef="let element"> {{element.index}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Client Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
+
+            <!-- Company Name Column -->
+            <ng-container matColumnDef="compName">
+                <mat-header-cell *matHeaderCellDef> Company Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.comp_name}} </mat-cell>
+            </ng-container>
+
+            <!-- Prefix Column -->
+            <ng-container matColumnDef="prefix">
+                <mat-header-cell *matHeaderCellDef> Prefix </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.prefix}} </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell  style="overflow: visible !important;" *matCellDef="let element">
+                    <div class="divstyle">
+                        <a class="tooltip " routerLink="/view_client/{{element.id}}"><img class="pink" src="assets/images/view.png"></a>
+                        <span class="viewTooptip">View</span>
+
+                        <a class="tooltip " routerLink="/edit_client/{{element.id}}"><img src="assets/images/edit.png"></a>
+                        <span class="viewTooptip">Edit</span>
+
+                        <a class="tooltip " (click)=openDialog(element.id) style="cursor:pointer;"><img src="assets/images/delete.png"></a>
+                        <span class="viewTooptip">Delete</span>
+                    </div>
+                </mat-cell>
+            </ng-container>
+ 
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <p mat-item-list class="loading_date" *ngIf="loaderShow">Loading data...</p>
+        <p mat-item-list class="Norecord" *ngIf=" API_status == 'failed' && !loaderShow" >No Clients found</p>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="API_status == 'success' && !loaderShow"></mat-paginator>
+    </mat-card>
+</div>
+
+
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow">
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+    <defs>
+    <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+    </defs>
+</svg>
+<!-- loader ends-->

@@ -1,0 +1,48 @@
+
+.title{
+    background-color: #f9f9f9;
+    color: grey;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100% !important;
+}
+
+button{
+    float: right;
+    background-color: #f05f25;
+    color: #fff;
+}
+
+  .mat-card-title {
+    font-size: 18px !important;
+}
+
+.card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px !important;
+    border-radius: 2px;
+}
+
+.backbutton{
+    position: absolute;
+    right: 20px;
+    top: 7px;
+}
+
+.PhoneNotValid{
+    color:red;
+    margin-top: -16px;
+    margin-bottom: 20px;
+}
+
+.blur{
+    opacity: .5;
+}

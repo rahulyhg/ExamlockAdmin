@@ -1,0 +1,63 @@
+<mat-card class="title card" [ngClass]="CrdBlur()">
+  <mat-card-title>
+    <strong>Add Subscription</strong>
+    <button (click)="goBack()" class="backbutton" mat-raised-button >BACK</button>
+  </mat-card-title>
+</mat-card>
+
+<mat-card class="detailform" [ngClass]="CrdBlur()">
+  <mat-error *ngIf="formError">
+    {{ formMessage}}
+  </mat-error>
+  <mat-error *ngIf="formSuccess">
+    {{ formMessage}}
+  </mat-error>
+  <br/>
+  <mat-card-content>
+    <form (ngSubmit)="OnSave()" ngNativeValidate>
+      <div class="example-container">
+
+        <label class="form_label" >Plan Name</label>
+        <input class="form_input" type="text" name="name" placeholder="Add Plan Name" [(ngModel)]="subcript.sub_name" required>
+
+        <label class="form_label" >Plan Cost</label>
+        <input class="form_input" type="number" name="cost" placeholder="Add Plan Cost" min="1" [(ngModel)]="subcript.sub_cost" required>
+
+        <label class="form_label" >Description</label>
+        <textarea class="form_input" type="text" name="description" placeholder="Add Description" [(ngModel)]="subcript.sub_desc" required></textarea>
+
+        <label class="form_label" >Number of Devices</label>
+        <input class="form_input" type="number" name="devices" placeholder="Add Number of Devices" max="10" min="1" [(ngModel)]="subcript.devices" required>
+
+        <label class="form_label" >Validity</label>
+        <select class="form_input" placeholder="Select" style="width: 98%;" name="validity" [(ngModel)]="defaultValue" required> 
+          <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" disabled="disabled"> Select Validity</option>
+          <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" *ngFor="let val of validity;let i = index" [value]="val" selected="i == 1" >{{val}}</option>
+        </select>
+
+        <div class="row">
+          <button mat-raised-button >SAVE</button>
+        </div> 
+
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+  
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+  </defs>
+</svg>
+<!-- loader ends-->

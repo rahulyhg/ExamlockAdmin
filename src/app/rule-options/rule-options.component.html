@@ -1,0 +1,70 @@
+<html ng-app="tag">
+    <div style=" margin:10px;">
+        <mat-card class="title card" [ngClass]="CrdBlur()">
+            <mat-card-title>
+                <strong>Add New Options</strong>
+                <button (click)="allRULES()" mat-raised-button class="backbutton">BACK</button>     
+            </mat-card-title>
+        </mat-card>
+        <mat-card class="detailform" [ngClass]="CrdBlur()">
+            <mat-error *ngIf="formError">
+                {{ formMessage}}
+            </mat-error>
+            <mat-error *ngIf="formSuccess">
+                {{ formMessage}}
+            </mat-error>
+            <br/>
+            <mat-card-content>
+                <div class="example-container">
+
+                    <label class="form_label" >What you want to add?</label>
+                    <select class="form_input" placeholder="Category" (change)=selectedValueChanged(selectedValue) name="category" [(ngModel)]="selectedValue" required>
+                        <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase;" value="" >Select Category</option>                
+                        <option *ngFor="let category of Categories" style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase;" [value]=category >{{category}}</option>
+                    </select>
+                    
+                    <div *ngIf="selectedValue == 'BOOKMARKS'">
+                        <label class="form_label"  >Value</label>
+                        <rl-tag-input style="height:auto;" class="form_input" (ngModelChange)=chck($event) [(ngModel)]="data" addOnSpace=false  placeholder="Enter Value" ></rl-tag-input>
+                        <div  id="maxlimit"> maximum 5 entries are allowed ({{length}})</div>
+                    </div>
+
+                    <div *ngIf="selectedValue == 'APPLICATION'">
+                        <label class="form_label" >Application Name</label>
+                        <input class="form_input" name="app_name"  placeholder="Enter Application Name"  [(ngModel)]="data" required >
+
+                        <label class="form_label" >Windows Service Name</label>
+                        <input class="form_input" name="windows"  placeholder="Enter Windows Service Name" (keyup)=nospaces(output.windows) [(ngModel)]="output.windows" required >
+
+                        <label class="form_label" >Mac Service Name</label>
+                        <input class="form_input" name="mac"  placeholder="Enter Mac Service Name" (keyup)=nospaces(output.mac) [(ngModel)]="output.mac" required >
+
+                        <label class="form_label" >Linux Service Name</label>
+                        <input class="form_input" name="linux"  placeholder="Enter Linux Service Name" (keyup)=nospaces(output.linux) [(ngModel)]="output.linux" required >
+                    </div>
+
+                    <div class="row">
+                        <button mat-raised-button (click)="onSave()" >Save</button>
+                    </div>
+                </div> 
+            </mat-card-content>
+        </mat-card>
+    </div>
+</html>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

@@ -1,0 +1,16 @@
+<div  class="alertContainer" >
+    <h2 class="alertHeading" mat-dialog-title></h2>
+    <mat-dialog-content>
+        
+        <label class="form_label set" >Rule Name</label>
+        <input class="form_input set" name="Rule_Name" placeholder="Enter Rule Name" [(ngModel)]="new_Rule_Name"  required>
+        <div class="errorpresent set" *ngIf=errorPresent >{{errorPresent}}</div>
+       
+        
+    </mat-dialog-content>
+    <mat-dialog-actions class="alertButton" style="right: 31%;">
+        <button class="alertButtonAction"  mat-button mat-dialog-close value="false" >CANCEL</button>
+        <button class="alertButtonAction" (click)="close()" mat-button  value="true" cdkFocusInitial >OK</button>
+    </mat-dialog-actions>
+</div>
+          

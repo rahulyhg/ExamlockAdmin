@@ -1,0 +1,106 @@
+
+<mat-card class="title card" [ngClass]="CrdBlur()">
+  <mat-card-title>
+      <strong>Edit Rule</strong>      
+      <button class=topButton (click)="goBack()" mat-raised-button class="backbutton">BACK</button>      
+  </mat-card-title>
+</mat-card>
+
+<mat-card class="detailform" [ngClass]="CrdBlur()">
+  <mat-card-content>
+      <div class="example-container" >          
+          <label class="form_label" >Rule Name</label>
+          <input class="form_input" minlength=1 name="rule_name" placeholder="Enter Rule Name" [(ngModel)]="rule.rule_name" required readonly>
+          <mat-error *ngIf="isFieldInvalid('rule_name')" class="invalidFormField">
+              Please enter Rule name
+          </mat-error>          
+      </div>
+  </mat-card-content>
+</mat-card >
+<div style="width:100%;">
+  <mat-tab-group >
+      <!--(selectedTabChange)="onLinkClick($event)"-->
+      <!--Bookmark tab-->
+      <mat-tab>
+          <ng-template mat-tab-label>
+              <em>
+                  <strong class="conHeading" >Bookmarks</strong>
+              </em>
+          </ng-template>
+          <div class="conBox" >
+              <br> <br> 
+             
+              <mat-slide-toggle class="bookmarkClass" id="bookmarkID" [checked]=bookmarkCheck (change)="deSelectBook($event)">Allow!</mat-slide-toggle>
+
+              <select [(ngModel)]="rule.rule_bookmarks" id="bookDropdown" name="bookDropdown" style="position: absolute; left: 178px; top: 61px;" multiple  >
+             
+                <option  *ngFor="let Bookmark of Bookmarks" (click)="optionClick()" value={{Bookmark.id}}>{{Bookmark.value}}</option>
+              </select>
+
+              <br><br><br><br><br>
+
+          </div>
+      </mat-tab>
+
+      <!--Control tab-->
+      <mat-tab>
+          <ng-template mat-tab-label>
+              <em>
+                  <strong class="conHeading">Controls</strong>
+              </em>
+          </ng-template>
+          <br><br>
+          <div  class="conBox">
+
+              Ports
+              <br><br>
+              <mat-slide-toggle id="SelectPorts"  [checked]="portCheck" [(ngModel)]="rule.rule_port" id="portD" name="port"  >ALLOW / RESTRICT</mat-slide-toggle>
+              <br><br><br><br>
+
+              Keys
+              <mat-slide-toggle id="SelectAllControl"  [checked]=SelectAllControl (change)="selectedFieldsControl('control',$event)">SELECT ALL </mat-slide-toggle>
+              <div class=toggleBox *ngFor="let controller of control">
+                  <mat-slide-toggle [checked]="controller.checked"  class="ctrl controlSelectt toggleText" (change)="selectedFieldsControl(controller,$event)" id={{controller.id}}>{{controller.value}}</mat-slide-toggle>
+              </div>
+              <!--checkingControl-->
+
+          </div>
+      </mat-tab>
+
+      <!--Applications tab-->
+      <mat-tab>
+          <ng-template mat-tab-label>
+              <em>
+                  <strong class="conHeading">Applications</strong>
+              </em>
+          </ng-template>
+          <div  class="conBox">
+
+              <mat-slide-toggle id="SelectAllApp" [checked]="SelectAllApp" (change)="selectedFields('application',$event)">SELECT ALL </mat-slide-toggle>
+              <div class=toggleBox *ngFor="let application of applications" >
+                  <mat-slide-toggle [checked]="application.checked"  class="appl controlSelectt toggleText" (change)="selectedFields(application,$event)"  id={{application.id}}>{{application.value}}</mat-slide-toggle>
+              </div>
+              <!--checking-->
+
+          </div>
+      </mat-tab>       
+  </mat-tab-group>
+  <button mat-raised-button class=saveButton (click)="onSave()" >SAVE</button>
+</div>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+  <defs>
+      <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+      </filter>
+  </defs>
+</svg>
+<!-- loader ends-->

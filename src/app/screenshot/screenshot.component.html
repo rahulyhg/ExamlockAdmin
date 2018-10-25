@@ -1,0 +1,44 @@
+
+  <div *ngIf=APIstatus>
+    <div class=screenshotBox *ngFor="let screen of screenurl">
+      <!-- <pinch-zoom> -->
+        <img (click)=imageresize($event) [src]="screen.screenshot" [ngClass]="screen.id"  width=200px height=200px />
+      <!-- </pinch-zoom> -->
+
+      <!-- <a href=# class=close></a> -->
+      <!-- <img class="expand_image" [ngClass]="screen.id" src="assets/images/expand.png" /> -->
+
+      <!-- <ngx-img-zoom
+          [imgSrc]="screen.screenshot" 
+          [imgStyle]="width:200px; height:200px;" 
+          [resultStyle]="width:824px; height:824px; background-repeat:no-repeat; z-index:2;"
+          [lensStyle]="width:155px; height:155px"
+          [containerStyle]=""
+      ></ngx-img-zoom> -->
+    </div>
+  </div>
+
+  <div class=noScreenshot *ngIf="APIstatus == 'failed'">
+    No Screenshot Available
+  </div>
+  
+  <div class="lightbox-target" id="dog">
+    <a class="lightbox-close" href="#"></a>
+  </div>
+  
+  <!-- loader start-->
+  <div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+  </div>
+  
+  <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+      </filter>
+    </defs>
+  </svg>
+  <!-- loader ends-->

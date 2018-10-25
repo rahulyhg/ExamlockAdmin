@@ -1,0 +1,12 @@
+<div  class="alertContainer" >
+    <h2 class="alertHeading" mat-dialog-title></h2>
+    <mat-dialog-content>
+        <p class=alertBody *ngIf="data.name == 'NoSpace'">Sorry, you are not allowed to enter any spaces!</p>
+        <p class=" book alertBody" *ngIf="data.name == 'BookmarkNotValid'"> "{{data.URL}}" is not a valid URL. <br> Example -- https://www.google.com</p>
+        <p class="alertBody"  *ngIf="data.name == 'Fields'">All the fields are mandatory. Please fill them to continue.</p>
+    </mat-dialog-content>
+    <mat-dialog-actions class="alertButton" >
+        <button class="alertButtonAction" mat-button [mat-dialog-close]="true" value="true" cdkFocusInitial>OK</button>
+    </mat-dialog-actions>
+</div>
+          

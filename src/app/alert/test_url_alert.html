@@ -1,0 +1,14 @@
+<div  class="alertContainer" >
+    <h2 class="alertHeading" mat-dialog-title></h2>
+    <mat-dialog-content>
+        <p class=alertBody *ngIf="data.name == 'TestUrl'">Please confirm that you have entered the right Test URL!</p>
+        <p class=alertBody *ngIf="data.name == 'renew'">Do you really want to RENEW your Plan?</p>
+        <p class=alertBody *ngIf="data.name == 'ClosedRenew'">Your Invoice has been generated. Kindly clear your dues to complete the process. </p>
+        
+    </mat-dialog-content>
+    <mat-dialog-actions class="alertButton" style="right: 31%;">
+        <button class="alertButtonAction"  mat-button mat-dialog-close value="false" *ngIf="data.name == 'TestUrl' || data.name == 'renew'">CANCEL</button>
+        <button class="alertButtonAction" mat-button [mat-dialog-close]="true" value="true" cdkFocusInitial >OK</button>
+    </mat-dialog-actions>
+</div>
+          

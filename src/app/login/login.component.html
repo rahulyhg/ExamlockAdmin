@@ -1,0 +1,39 @@
+<div id ="top">
+    <span class="logo_span">
+        <img class="login_img" src="assets/images/examlock_final_logo.png" alt="img">
+        <span class="logo_name">Examlock</span>
+    </span>
+</div>
+
+
+<mat-card class="detailform">
+    <mat-card-title>
+        <h1 class="dashboard_title">Dashboard Login</h1>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form (submit)="onSubmit()" >
+            <div class="example-container" [formGroup]="form" >
+                <mat-error *ngIf="formError">
+                    {{ formErrorMessage }}
+                </mat-error>
+                    <label class="form_label">Username</label>
+                    <input class="form_input" placeholder="Enter Username" name="username" formControlName="username" required >
+                    <mat-error *ngIf="isFieldInvalid('username')" class="invalidFormField">
+                        Please enter your user name
+                    </mat-error>
+                <br><br>
+
+                <label class="form_label">Password</label>
+                <input class="form_input" placeholder="Enter Password" type="password" name="password" formControlName="password" required>
+                <mat-error *ngIf="isFieldInvalid('password')" class="invalidFormField">
+                    Please enter your password
+                </mat-error>
+
+                <div class="row">
+                <button mat-raised-button >LOGIN</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

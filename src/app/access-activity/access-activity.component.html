@@ -1,0 +1,69 @@
+<mat-card class="title card" [ngClass]="CrdBlur()">
+  <mat-card-title>
+     <strong>View Activity</strong> 
+     <button routerLink='/access_log' class="mybutton" mat-raised-button >Back</button>  
+     <button routerLink='/Screenshot/{{onlyId.access_log_id}}' class="mybutton screenshot" mat-raised-button >Screenshot</button>      
+  </mat-card-title>
+</mat-card>
+      
+    <div>
+   
+      <mat-card class="detailform" [ngClass]="CrdBlur()">
+  
+        <mat-table #table [dataSource]="dataSource" >
+    
+          <!-- ID Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell style="max-width: 9%!important;" *matHeaderCellDef> </mat-header-cell>
+            <mat-cell style="max-width: 9%!important;" *matCellDef="let element"> {{element.index}} </mat-cell>
+          </ng-container> 
+
+           <!-- type Column -->
+           <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+          </ng-container>
+      
+          <!-- activity Column -->
+          <ng-container matColumnDef="access_activity">
+            <mat-header-cell *matHeaderCellDef> Activity </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.activity}} </mat-cell>
+          </ng-container>
+        
+          <!-- server_time Column -->
+          <ng-container matColumnDef="server_time">
+            <mat-header-cell *matHeaderCellDef> Server Time </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.server_time}} </mat-cell>
+          </ng-container>
+    
+          <!-- performed_on Column -->
+          <ng-container matColumnDef="performed_on">
+            <mat-header-cell *matHeaderCellDef> Performed On </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.performed_on}} </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>        <p mat-item-list  class="loading_date" *ngIf="loaderShow">Loading data...</p>
+      <p mat-item-list class="Norecord" *ngIf=" API_status == 'failed' && !loaderShow" >No Activity found</p>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="API_status == 'success' && !loaderShow"></mat-paginator>
+    </mat-card>
+    
+    </div>
+  
+  <!-- loader start-->
+  <div class="container" *ngIf="loaderShow" >
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+    
+    <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+        </filter>
+      </defs>
+    </svg>
+    <!-- loader ends-->

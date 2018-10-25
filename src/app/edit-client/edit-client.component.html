@@ -1,0 +1,58 @@
+<div *ngIf="onlyClient">
+  <mat-card class="title card"  [ngClass]="CrdBlur()">
+    <mat-card-title>
+      <strong>Edit Client</strong>
+      <button routerLink="/client" mat-raised-button class="backbutton">BACK</button> 
+    </mat-card-title>
+  </mat-card>
+  <mat-card class="detailform" [ngClass]="CrdBlur()">
+    <mat-error *ngIf="formError">
+      {{ formMessage}}
+    </mat-error>
+    <mat-error *ngIf="formSuccess">
+      {{ formMessage}}
+    </mat-error>
+    <br/> 
+
+    <mat-card-content> 
+      <h2>{{ onlyClient.username | uppercase }} Details</h2>
+
+      <div class="example-container"  >
+
+        <label class="form_label" >Name</label>
+        <input class="form_input" type="text" placeholder="Enter Name" name="username" [(ngModel)]="onlyClient.username" readonly>
+
+        <label class="form_label" >Email</label>
+        <input class="form_input" type="email" placeholder="Enter Email"name="email" [(ngModel)]="onlyClient.email" type="email" >
+
+        <label class="form_label" > Company Name</label>
+        <input class="form_input" type="text" placeholder="Enter Company Name" name="comp_name" [(ngModel)]="onlyClient.comp_name" >
+
+        <label class="form_label" >Prefix</label>
+        <input class="form_input" type="text" placeholder="Prefix" name=prefix [(ngModel)]="onlyClient.prefix" readonly>
+       
+        <div class="">
+          <button mat-raised-button (click)="onSave()">SAVE</button>
+        </div>
+
+      </div> 
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+  </div>
+  
+  <svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+      </filter>
+    </defs>
+  </svg>
+  <!-- loader ends-->

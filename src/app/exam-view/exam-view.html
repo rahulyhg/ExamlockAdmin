@@ -1,0 +1,169 @@
+<div *ngIf="onlyExam"> 
+    <div *ngFor = "let exam of onlyExam">
+        <mat-card class="title card" [ngClass]="CrdBlur()" >
+            <mat-card-title>
+                <strong>{{ exam.exam_name | uppercase }} Details</strong>
+            </mat-card-title>
+            <button class=topButton routerLink='/edit_exam/{{exam.exam_id}}' mat-raised-button class="backbutton">EDIT EXAM</button>
+            <button class=topButton (click)="goBack()" mat-raised-button class="backbutton">BACK</button>      
+        </mat-card>
+
+        <mat-card class="detailform" [ngClass]="CrdBlur()" *ngIf="limit_reached && clientLogin && Payment_status==0 && renewStatus==0">
+            <mat-card-content> 
+                <strong>Looks like your invoice is still PENDING. Kindly make the PAYMENT to use the Access Token.</strong>
+                <button class=topButton (click)="PaymentNow(exam.inv_id, 'paynow')" mat-raised-button class="backbutton" style="bottom: 9px;">PAY NOW</button>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="detailform" [ngClass]="CrdBlur()" *ngIf="show_renew && clientLogin && Payment_status==1 && renewStatus==0">
+            <mat-card-content> 
+                    <strong>Looks like your limit is going to reach. Please RENEW to increase the limit.</strong>
+                    <button class=topButton  (click)="RenewNow(exam.inv_id)" mat-raised-button class="backbutton" style="bottom: 9px;">RENEW</button>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="detailform" [ngClass]="CrdBlur()" *ngIf="show_renew && clientLogin && Payment_status==0 && renewStatus==1">
+            <mat-card-content> 
+                    <strong>Please clear your dues to complete the Renewal Process. </strong>
+                    <button class=topButton  (click)="GoToInvoices()" mat-raised-button class="backbutton" style="bottom: 9px;">INVOICES</button>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="detailform" [ngClass]="CrdBlur()" >
+            <mat-card-content> 
+                <div class="example-container">
+                    <div class="information">
+                        <mat-card-title class="">
+                            <strong class="example_head"> Basic Details</strong>
+                        </mat-card-title>  
+                        
+                        <p mat-list-item class="user-line">
+                            <mat-icon large >content_paste</mat-icon> 
+                            <span class="example_title">&nbsp;&nbsp;Exam Name </span>
+                            <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.exam_name}}</span>
+                        </p>
+
+                        <p mat-list-item class="user-line">
+                            <mat-icon large>person</mat-icon> 
+                            <span class="example_title">&nbsp;&nbsp;Client Name</span> 
+                            <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.client_name}}</span>
+                        </p>
+
+                        <p mat-list-item class="user-line">
+                            <mat-icon large>description</mat-icon>
+                            <span class="example_title">&nbsp;&nbsp;Exam Description</span> 
+                            <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.exam_desc}}</span>
+                        </p>
+
+                    </div>
+                    <div class="attributes">
+                        <mat-card-title>
+                            <strong class="example_head"> System Details</strong>
+                        </mat-card-title>
+
+                        <p mat-list-item class="user-line">
+                            <mat-icon large >date_range</mat-icon> 
+                            <span class="example_title">&nbsp;&nbsp;Assigned Date </span>
+                            <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.exam_created}}</span>
+                        </p>
+
+                        <p mat-list-item class="user-line">
+                            <mat-icon large>assignment_returned</mat-icon> 
+                            <span class="example_title">&nbsp;&nbsp;Alloted devices</span> 
+                            <span class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.total_limit}}</span>
+                        </p>
+
+                        <p mat-list-item class="user-line">
+                            <mat-icon large>filter</mat-icon>
+                            <span class="example_title"> &nbsp;&nbsp;Remaining devices </span> 
+                            <span  class="example_info"><strong>&#58;</strong>&nbsp;&nbsp;&nbsp;{{exam.available_limit}}</span>
+                        </p>
+
+                        <button mat-raised-button (click)="detailsRedirect($event)" class="detailsButton"  > ACCESS ACTIVITY</button>
+                    </div> 
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="detailform" [ngClass]="CrdBlur()" >
+            <mat-card-content> 
+                <div class="example-container">
+                    <div class="row2 rules" >
+                        <mat-card-title>
+                            <strong class="example_head"> Allowed Rules </strong>
+                        </mat-card-title>
+
+                        <mat-card-title>
+                            Name <mat-icon large style="position: absolute;">arrow_right_alt</mat-icon> <span style="position: absolute; left: 90px;">{{rule_name | uppercase}}</span>
+                        </mat-card-title> 
+                        
+                        <!-- for Bookmarks -->
+                        <div class="ruleBox">
+                            <p mat-list-item class="user-line">
+                                <mat-icon large>bookmark</mat-icon> 
+                                <span class="example_title"> Bookmarks </span>
+                            </p>        
+                            <ul mat-list-item >
+                            <li class=example_list *ngFor="let bookmark of books">{{bookmark.value}}</li>
+                            </ul>
+                            <div class="example_list" *ngIf=!books >No Bookmark</div>
+                        </div>
+
+                        <!-- for Applications -->
+                        <div class="ruleBox">
+                            <p mat-list-item  class="user-line" >
+                                <mat-icon large>mobile_screen_share</mat-icon> 
+                                <span class="example_title">Applications </span>
+                            </p>        
+                            <ul mat-list-item >
+                            <li class=example_list *ngFor="let application of app">{{application.value}}</li>
+                            </ul>
+                            <div class="example_list" *ngIf=!app >No Application</div>
+                        </div>
+
+                        <!-- for Ports -->
+                        <div class="ruleBox">
+                            <p mat-list-item  class="user-line">
+                                <mat-icon large>bug_report</mat-icon> 
+                                <span class="example_title"> Ports </span>
+                            </p>        
+                            <ul mat-list-item >
+                                <li class=example_list *ngFor="let port of portt">{{port.value}}</li>
+                            </ul>
+                            <div class="example_list CapitalValue" *ngIf=!portt >No Port</div>
+                        </div>
+
+                        <!-- for Controls -->
+                        <div class="ruleBox" >
+                            <p mat-list-item  class="user-line">
+                                <mat-icon large>copyright</mat-icon> 
+                                <span class="example_title"> Controls </span>
+                            </p>        
+                            <ul mat-list-item >
+                                <li class="example_list CapitalValue" *ngFor="let controls of ctrl">{{controls.value}}</li>
+                            </ul>
+                            <div class="example_list" *ngIf=!ctrl >No Control</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> 
+   
+<!-- loader start-->
+<div class="container" *ngIf="loaderShow" >
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+</div>
+
+<svg xmlns="assets/js/svg.js" version="1.1" *ngIf="loaderShow">
+<defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+    </filter>
+</defs>
+</svg>
+<!-- loader ends-->

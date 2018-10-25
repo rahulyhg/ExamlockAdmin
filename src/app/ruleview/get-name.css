@@ -1,0 +1,15 @@
+.alertContainer{  position:relative; margin: -24px; overflow: hidden; height: 200px; background-color: #f6f6f6; border: 5px solid #f05f25;}
+
+.alertHeading{ background-color:#f05f25; overflow: hidden; height: 16px; }
+
+mat-dialog-actions.alertButton{ position: absolute; right: 24%;}
+
+button.alertButtonAction{background-color: #f05f25; border-radius: 25px;color: white;  }
+
+mat-dialog-container.mat-dialog-container{ padding:0px; }
+
+p.alertBody{ margin-top: 12px; text-align: center; font-size:17px;}
+
+.set{ width: 90%; margin-left: 5%;}
+
+.errorpresent{ color:#bf7472; background-color:#f2dede; line-height: 24px; margin-top: -15px;} 
