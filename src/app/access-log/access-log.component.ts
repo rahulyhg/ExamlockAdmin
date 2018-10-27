@@ -68,7 +68,7 @@ export class AccessLogComponent implements OnInit {
           
           this.API_status = response.status;
 
-          this.APIresponse = response.logs
+          this.APIresponse = response.logs;
 
               //hiding loader
                this.loaderShow = false;
@@ -247,7 +247,7 @@ export class AccessLogComponent implements OnInit {
     }
 
 
-  displayedColumns = ['position',  'exam_name', 'date', 'access_token', 'machine_type', 'machine_name', 'timezone', 'action'];
+  displayedColumns = ['position',  'exam_name', 'candidateName', 'candidateID', 'date', 'access_token', 'machine_type', 'machine_name', 'timezone', 'action'];
   dataSource = new MatTableDataSource(this.access_log);
 
   //method to filter data 

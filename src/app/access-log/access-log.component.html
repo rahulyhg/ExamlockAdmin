@@ -40,6 +40,18 @@
           <mat-header-cell *matHeaderCellDef> Client Name </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.client_name}} </mat-cell>
         </ng-container>
+
+         <!--Candidate Name Column -->
+         <ng-container matColumnDef="candidateName">
+          <mat-header-cell *matHeaderCellDef> Candidate Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.candidateName}} </mat-cell>
+        </ng-container>
+        
+         <!-- Candidate ID Column -->
+         <ng-container matColumnDef="candidateID">
+          <mat-header-cell *matHeaderCellDef> Candidate ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.candidateID}} </mat-cell>
+        </ng-container>
     
         <!-- date Column -->
         <ng-container matColumnDef="date">
