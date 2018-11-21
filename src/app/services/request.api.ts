@@ -29,6 +29,7 @@ export class RequestApi {
 
   
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  private headers2 =  new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) {}
 
@@ -444,6 +445,42 @@ export class RequestApi {
     return this.http.post(this.Base_URL+ '/insertPayment',   
       JSON.stringify(values),
       { headers: this.headers }).map((res: Response) => {
+        const data = res.json();
+        return data;
+      });
+  }
+  
+  valhalla_login(values){
+    return this.http.post(this.Base_URL+ '/valhalla_login',   
+      JSON.stringify(values),
+      { headers: this.headers }).map((res: Response) => {
+        const data = res.json();
+        return data;
+      });
+  }
+
+  ViewCientbyExamCandidateID(values){
+    return this.http.post(this.Base_URL+ '/ViewCientbyExamCandidateID',   
+      JSON.stringify(values),
+      { headers: this.headers }).map((res: Response) => {
+        const data = res.json();
+        return data;
+      });
+  }
+
+  Generate_JWToken(values){
+    return this.http.post('https://apis.examroom.ai/api/Test' ,   
+      JSON.stringify(values),
+      { headers: this.headers2 }).map((res: Response) => {
+        const data = res.json();
+        return data;
+      });
+  }
+
+  auto_login(values){
+    return this.http.post('https://apis.examroom.ai/api/ExamLock' ,   
+      JSON.stringify(values),
+      { headers: this.headers2 }).map((res: Response) => {
         const data = res.json();
         return data;
       });

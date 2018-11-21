@@ -5,13 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Routes, RouterModule } from "@angular/router";
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
+import { TagInputModule } from 'ngx-chips';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { ClientComponent } from './client/client.component';
 import { ExamComponent } from './exam/exam.component';
 import { InvoiceComponent } from './invoice/invoice.component';
@@ -36,7 +36,6 @@ import { RuleviewComponent, getnameDialog } from './ruleview/ruleview.component'
 import { ExamViewComponent } from './exam-view/exam-view.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
 import { RuleOptionsComponent, NoSpaceAlertDialog} from './rule-options/rule-options.component';
-import { RlTagInputModule } from 'angular2-tag-input';
 import { SubsViewComponent } from './subs-view/subs-view.component';
 import { AlertComponent, TestUrlComponent } from './alert/alert.component';
 import { AccessLogComponent } from './access-log/access-log.component';
@@ -49,6 +48,7 @@ import { ScreenshotComponent } from './screenshot/screenshot.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    LogoutComponent,
     ClientComponent,
     ExamComponent,
     InvoiceComponent,
@@ -85,10 +85,11 @@ import { ScreenshotComponent } from './screenshot/screenshot.component';
     BrowserModule,
     CommonModule,
     FormsModule,
-    RlTagInputModule,
+  //  RlTagInputModule,
     ReactiveFormsModule,
     HttpModule,
     MaterialModule,
+    TagInputModule,
     BrowserAnimationsModule,
     ChartsModule,
     AppRoutingModule,

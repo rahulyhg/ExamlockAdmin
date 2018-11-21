@@ -132,3 +132,7 @@ button{
 #top{
     margin-top: 5%;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #808080;
+}

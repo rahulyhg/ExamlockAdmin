@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "include":[
+    "./**/*.ts",
+    "../node_modules/sce-plugins/**/*.ts"
+   ],
+
 }

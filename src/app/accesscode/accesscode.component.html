@@ -1,10 +1,10 @@
 <mat-card class="bgclr" [ngClass]="CrdBlur()">
-  <div class="example-container" [hidden]="!myVar">
+  <div class="example-container">
       <div class="example-header">
         <div class="newform">
           <form name="searchForm" class="new-inner-element full-width btn-form">
             <div class="search_top">
-              <input type="text"  (keyup)="applyFilter($event.target.value)" [(ngModel)]=SelectInput class="input_invoice" name="searchres" placeholder="Search rules" >
+              <input type="text"  (keyup)="applyFilter()" [(ngModel)]=SelectInput class="input_invoice" name="searchres" placeholder="Search rules" >
               <button class="inv_button " type="button"><i class="fa fa-search"></i></button>
             </div>
           </form>

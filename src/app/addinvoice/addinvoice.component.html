@@ -26,7 +26,7 @@
 
                 <label class="form_label">Subscription Plan</label>
                 <select class="form_input" name="Subscription_name" (change)=SubscriptionDetails(invoice.sub_id) placeholder="Subscription Name" [(ngModel)]="invoice.sub_id" required="required">
-                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" [disabled]="Disabled">Select Subscription Plan </option>
+                    <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%" value="" >Select Subscription Plan </option>
                     <option style="color:#A8AAAC; background-color: #f6f6f9; text-transform: uppercase; width:100%"  *ngFor="let sub of subscriptions" [value]=sub.sub_id >{{sub.sub_name}}</option>
                 </select>
                 <div class="subDeatils" *ngIf=invoice.sub_id > 

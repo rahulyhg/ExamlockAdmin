@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './services/auth/auth.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ISubscription } from "rxjs/Subscription";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import { RequestApi } from './services/request.api';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -34,17 +34,18 @@ export class AppComponent implements OnInit, OnDestroy{
   inRule=false; inExam=false; inClient=false;
   inSubscription=false; inInvoice=false; inActivity=false;
   private logSubcription: ISubscription;
+  id;
+  doSearch;
 
-  constructor(public router: Router, private authService: AuthService, private requestApi: RequestApi,      private spinnerService: Ng4LoadingSpinnerService) {  }
+  constructor(public router: Router, private authService: AuthService, private requestApi: RequestApi,      private spinnerService: Ng4LoadingSpinnerService,  private route: ActivatedRoute) {  }
 
   ngOnInit() {
 
+    // if(localStorage.getItem('users')  != ''){
+    // }else{
 
-    if(localStorage.getItem('users')  != ''){
-      //console.log('users');
-    }else{
-      this.router.navigate(['/logout']);
-    }
+    //  // this.router.navigate(['/logout']);
+    // }
 
     this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
      this.logSubcription =  this.isLoggedIn$.subscribe((logged: boolean) => {
@@ -60,7 +61,6 @@ export class AppComponent implements OnInit, OnDestroy{
           }
         });
       this.admin();
-
   }
 
   ngOnDestroy() {
@@ -77,7 +77,6 @@ export class AppComponent implements OnInit, OnDestroy{
 
   admin(){
     this.uname = localStorage.getItem("admin_name");
-
     if(this.uname != null){
       this.uname = this.uname.replace(/['"]+/g, '');
     }else{

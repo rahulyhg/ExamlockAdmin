@@ -8,9 +8,12 @@ import {Router } from "@angular/router";
 export class LogoutComponent{
 
   constructor(public router:Router) {
+    console.log('ininini');
     localStorage.setItem('isLoggedIn','F');
     localStorage.clear();
-    this.router.navigate(["login/0"]);   
+    this.router.navigate(["login"]);   
+   
   }
 
 }
+ 

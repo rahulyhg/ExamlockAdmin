@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidemenuComponent implements OnInit {
 
+  AdminStatus;
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.AdminStatus = localStorage.getItem('status').replace(/['"]+/g, '');
+  }
 
 }

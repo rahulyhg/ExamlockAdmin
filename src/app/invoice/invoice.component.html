@@ -5,7 +5,7 @@
       <div class="example-header">
           <div class="newform">
             <form class="new-inner-element full-width btn-form">
-              <input type="text" (keyup)="applyFilter($event.target.value)" [(ngModel)]=SearchInput class="input_invoice" name="searhres" placeholder="Search invoice by clients" >
+              <input type="text" (keyup)="applyFilter()" [(ngModel)]=SearchInput class="input_invoice" name="searhres" placeholder="Search invoice by clients" >
               <button  class="inv_button" type="button"><i class="fa fa-search"></i></button>
             </form>
             <button mat-raised-button class="mybutton new-inner-element" (click)="newinvoice()">ADD INVOICE</button>

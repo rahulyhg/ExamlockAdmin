@@ -28,9 +28,10 @@ import { EditRuleComponent } from './edit-rule/edit-rule.component';
 import { ScreenshotComponent } from './screenshot/screenshot.component';
 
 const appRoutes: Routes = [ 
-    { path: '', redirectTo:'logout', pathMatch:'full' },
-    { path: 'login/:id', component: LoginComponent },    
-    { path: 'app', component: AppComponent },
+    { path: '', redirectTo:'login', pathMatch:'full' },
+    { path: 'login/:id', component: LoginComponent },
+    { path: 'login', component: LoginComponent },    
+    { path: 'app/:id', component: AppComponent },
     { path: 'client', component: ClientComponent, canActivate: [AuthGuard] },
     { path: 'newclient', component: AddnewclientComponent, canActivate: [AuthGuard] },
     { path: 'exam', component: ExamComponent, canActivate: [AuthGuard] },

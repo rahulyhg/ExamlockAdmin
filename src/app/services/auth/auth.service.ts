@@ -3,7 +3,6 @@ import { Http, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from './user';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 
@@ -42,11 +41,12 @@ export class AuthService {
 
     }
 
-    logout() {
+    logout(id) {
         this.loggedIn.next(false);
         localStorage.setItem('users', '');
         localStorage.setItem('subscriptions', null);
         localStorage.setItem('clients', null);
-        this.router.navigate(['/login']);
+        console.log('logout--/'+id)
+        this.router.navigate(['/login/'+id]);
     }
 }

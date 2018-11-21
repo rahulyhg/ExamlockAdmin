@@ -25,8 +25,8 @@
                     
                     <div *ngIf="selectedValue == 'BOOKMARKS'">
                         <label class="form_label"  >Value</label>
-                        <rl-tag-input style="height:auto;" class="form_input" (ngModelChange)=chck($event) [(ngModel)]="data" addOnSpace=false  placeholder="Enter Value" ></rl-tag-input>
-                        <div  id="maxlimit"> maximum 5 entries are allowed ({{length}})</div>
+                        <tag-input [(ngModel)]='items' style="height:auto;" [maxItems]='5' class="form_input" (ngModelChange)=chck($event)></tag-input>
+                        <!-- <div  id="maxlimit"> maximum 5 entries are allowed ({{length}})</div> -->
                     </div>
 
                     <div *ngIf="selectedValue == 'APPLICATION'">

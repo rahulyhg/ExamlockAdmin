@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef,} from '@angular/material';
-import {Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { RequestApi } from '../services/request.api';
 
 
@@ -21,6 +21,7 @@ export class RuleOptionsComponent implements OnInit {
   loaderShow:boolean = true;
   output;
   APPLICATION;
+  items=[];
 
   formError: boolean = false;
   formSuccess: boolean = false;
@@ -94,14 +95,20 @@ export class RuleOptionsComponent implements OnInit {
     }
     
   onSave(){
+    for (let i in this.items){
+      this.data.push(this.items[i].value);
+    }
 
     if(this.selectedValue == 'BOOKMARKS'){
-      this.output.value = this.data;
-      this.checkBlank('BOOKMARKS');
 
       for (let i in this.data){
         this.data[i] = "http://" + this.data[i];
       }
+
+      this.output.value = this.data;
+      this.checkBlank('BOOKMARKS');
+
+     
 
     }else if(this.selectedValue == 'APPLICATION'){
       this.output.value.push(this.data);
@@ -122,14 +129,32 @@ export class RuleOptionsComponent implements OnInit {
     this.requestApi.insertRuleOption(this.output)
       .subscribe(
       (response) => {
-        console.log(response);
         if(response.status == 'failed'){
+
+          //resetting values
+          this.formMessage = '';
+          this.data = [];
+
+          for (let i in this.items){
+             this.data.push(this.items[i].value);
+           }
+
           //hiding loader
           this.loaderShow = false;
 
           this.formError = true;
           this.formSuccess = false;
-          this.formMessage = response.msg;
+          let BookVal = [];
+
+          if(response.DuplicateEntries){
+            for (let l in response.DuplicateEntries){
+              BookVal.push(response.DuplicateEntries[l]);
+            }
+
+            if(response.DuplicateEntries.length == 1){
+              this.formMessage = response.msg + '. ' + BookVal + ' is already added';
+            }else  this.formMessage = response.msg + '. ' + BookVal + ' are already added';
+          }else  this.formMessage = response.msg;
         }
         else if(!response.errorMessage) {
           //hiding loader
@@ -185,7 +210,7 @@ export class RuleOptionsComponent implements OnInit {
 
   NoSpaceDialog(val) {
       const dialogRef = this.dialog.open(NoSpaceAlertDialog, {
-        data: { name : val, URL: this.lastURL},
+        data: { name : val, URL: this.lastURL.value},
         height: '185px',
         width: '440px'
       });
@@ -201,10 +226,10 @@ export class RuleOptionsComponent implements OnInit {
   
   chck($scope){
     
-    if(this.data.length != $scope.length ){
+    if(this.items.length == $scope.length ){
 
       this.lastURL = $scope[$scope.length-1];
-      let res = this.ValidURL(this.lastURL);
+      let res = this.ValidURL(this.lastURL.value);
       
       //if  ValidURL() return false
       if (res == false && this.lastURL != undefined){

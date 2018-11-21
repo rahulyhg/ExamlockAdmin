@@ -6,7 +6,7 @@
 }
 
 .bgclr{
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
 }
 
 .example-header {
@@ -38,7 +38,7 @@ table, mat-card{
 }
 
 mat-sidenav-content.mat-drawer-content.mat-sidenav-content{
-  background-color: #f9f9f9 !important;
+  background-color: #f1f1f1 !important;
   width:100%!important;
 }
 

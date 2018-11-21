@@ -10,7 +10,7 @@
             <a mat-list-item class="active" href="/#/home">
                 <mat-icon small>dashboard</mat-icon>&nbsp;&nbsp;&nbsp;Dashboard
             </a>
-            <a mat-list-item href="/#/client" *ngIf="user=='admin'">     
+            <a mat-list-item href="/#/client" *ngIf="AdminStatus == '0'">     
                 <mat-icon small>group</mat-icon>&nbsp;&nbsp;&nbsp;Clientscerfrf
             </a>
             <a mat-list-item href="/#/exam">
