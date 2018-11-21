@@ -248,8 +248,13 @@ export class LoginComponent implements OnInit {
 
         if(response.data){
 
-          this.username =   response.data.username;       
-          this.form.value.username =   response.data.username;    
+          this.username =   response.data.username;    
+          this.password = '';   
+
+          this.form.value.username =   response.data.username; 
+          this.form.value.password = '';   
+
+
 
         }else {
           this.addNewClient();
@@ -276,7 +281,10 @@ export class LoginComponent implements OnInit {
   
 
           this.username =   this.client_input.username; 
+          this.password = '';
+
           this.form.value.username =   this.client_input.username; 
+          this.form.value.password = '';
 
       
         } else {   
