@@ -254,8 +254,6 @@ export class LoginComponent implements OnInit {
           this.form.value.username =   response.data.username; 
           this.form.value.password = '';   
 
-
-
         }else {
           this.addNewClient();
         }
